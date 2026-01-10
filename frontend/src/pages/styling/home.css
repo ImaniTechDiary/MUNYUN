@@ -64,9 +64,10 @@
         transform: translate(-50%, -50%);
         opacity: 0;
         transition: opacity 0.5s ease-in-out;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: bold;
         color: #ff69b4;
+        text-align: center;
         /* Pretty pink */
         text-decoration: none;
     }

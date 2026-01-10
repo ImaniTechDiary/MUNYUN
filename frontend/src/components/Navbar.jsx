@@ -54,7 +54,7 @@ function Navbar() {
             </Button>
           </HStack> */}
 
-          <HStack>
+          <HStack className='mainFlowerDiv'>
             <div className="flowerCont">
               <img src={PinkFlower} className='flower'/>
               <Link to={'/expenses/create'} className="link">Create an Expense</Link>
@@ -69,12 +69,12 @@ function Navbar() {
             </div>
             <div className="flowerCont">
               <img src={PinkFlower} className='flower'/>
-              <Link href="link.html" className="link">Click link</Link>
+              <Link href="link.html" className="link">Budget</Link>
             </div>
-            <div className="flowerCont">
+            {/* <div className="flowerCont">
               <img src={PinkFlower} className='flower'/>
               <Link href="link.html" className="link">Click link</Link>
-            </div>
+            </div> */}
             
           </HStack>
 
