@@ -6,6 +6,7 @@ import cors from 'cors';
 // ROUTES
 import expenseRoutes from './routes/expense.route.js'
 import eventRoutes from './routes/event.route.js';
+import quoteRoutes from './routes/quote.route.js'
 
 
 dotenv.config();
@@ -32,6 +33,7 @@ app.use(cors(corsOptions));
 
 app.use('/api/expenses', expenseRoutes)
 app.use('/api/events', eventRoutes)
+app.use('/api/quote', quoteRoutes)
 
 
 
