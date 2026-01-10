@@ -6,27 +6,17 @@ const Quote = () => {
     useEffect(() => {
         const fetchQuote = async () => {
         try {
-            const response = await fetch("http://api.quotable.io/random"); // figure out how to use https with this api later since running into error
+            const response = await fetch("http://localhost:8000/api/quote");
             const data = await response.json();
-            setQuote(`${data.content} - ${data.author}`);
+            setQuote(`${data[0].q} - ${data[0].a}`);
         } catch (error) {
             console.error("Error fetching quote:", error);
+            setQuote('Quotes currently unavailable.')
         }
         };
 
         fetchQuote();
     }, []);
-
-    useEffect (() => {
-        const fetchQuote = async () => {
-            try {
-                const response = await fetch('https://api.quotable.io/random')
-                const data = await response.json()
-            } catch (error) {
-                console.error
-            }
-        }
-    })
 
 
 
