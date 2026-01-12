@@ -14,37 +14,35 @@ import FinanceNews from '../components/FinanceNews'
 function HomePage() {
 
   return (
-    <div id='homeMainCont' className='homeMainCont'>
-    
-    {/* <div className='div1'> */}
-      <div className="navbar">
+    <div id='homeMainCont' className='homeMainCont parent'>
+      <div className="navbar div1">
         <Navbar />
       </div>
+
+
       <div className='calendar'>
         <MyCalendar 
         />
       </div>
-      
+    {/* </div> */}
 
-      {/* <div className="QuoteMainDiv">  */}
+      <div className="div3"> 
         <div bg='#ffc0cb' shadow='md' className="quote">
           <Quote />
         </div>
-        {/* </div> */}
+        </div>
         
 
-        <div className="reports">
+        <div className="reports div5">
           <h2 className='expenseReportTitle'>Expense Report</h2>
           <Reports />
         </div>
         
 
-      <div className="div5">
+      <div className="financeNews div6">
         <FinanceNews />
       </div>
     </div>
-    // </div>
-
   )
 }
 
