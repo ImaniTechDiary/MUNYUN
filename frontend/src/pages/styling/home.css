@@ -1,29 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Emilys+Candy&display=swap');
 
+/* .homeMainCont {
+    display: flex;
+    flex-direction: column !important;
+} */
 
-.colorHolder {
-    background-color: #f7d6e7;
+* {
+    overflow-x: hidden;
 }
 
+.homeMainCont {
+    background-color: #f7d6e7;
+}
+/* .colorHolder {
+    background-color: #f7d6e7;
+} */
+
 .homePage {
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* gap: 10px; */
     /* grid-template-columns: repeat(6, 1fr); */
     /* grid-template-rows: repeat(6, 1fr); */
-    grid-template-rows: auto;
-    grid-template-columns: auto;
-    min-height: 100vh;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    /* grid-template-rows: auto;
+    grid-template-columns: auto; */
+    /* min-height: 100vh; */
+    /* grid-column-gap: 0px;
+    grid-row-gap: 0px; */
     background-color: #f7d6e7;
 }
 
 .homeLogo {
     width: 400px;
-    padding-left: 65px;
+    /* padding-left: 65px; */
 }
 
 /* DIV 1 STYLES : START */
-.div1 {
+.navbar {
     grid-area: 1 / 1 / 2 / 7;
     overflow: hidden; /* make sure navbar doesn't overflow */
     display: flex;
@@ -80,10 +94,10 @@
 
 
 /*  DIV 2 STYLES: START */
-.div2 {
+.calendar {
     grid-area: 2 / 1 / 5 / 4;
     margin-left: -10px;
-    /* padding-left: 10px; */
+    padding-left: 10px;
 
     background-color: #f7d6e7;
 
@@ -93,12 +107,13 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
     }
     .createEventBtn {
         background-color: #ffc0cb;
         color: #f4d8dd;
-        width: 350px;
-        height: 40px;
+        width: 80%;
+        height: 30%;
         /* align-self: center; */
         margin-bottom: 20px;
         border-radius: 10px; 
@@ -111,7 +126,7 @@
         /* width: 100%; */
         max-width: 500px;
         margin: auto;
-        padding: 35px;
+        padding-top: 15px;
         background-color: #ffc0cb;
         border-radius: 10px;
         box-shadow: 0px 4px 10px rgba(212, 93, 196, 0.555);
@@ -119,14 +134,19 @@
 /* DIV 2 STYLES: END */
 
 
-.div3 {
-    grid-area: 2 / 4 / 3 / 6;
+.quote {
+    /* grid-area: 2 / 4 / 3 / 6; */
     background-color: #ffc0cb !important;
     color:#813e8e;
     border-radius: 12px;
-    margin: 0 10px 0 10px;
-    padding: 2px;
-    width: 500px;
+    display: flex;
+    justify-self: center;
+    /* justify-content: center;
+    align-content: center;
+    margin: 0; */
+    /* margin: 0 10px 0 10px; */
+    /* padding: 2px; */
+    width: 95%;
     text-align: center;
     font-size: 20px;
     box-shadow: 5px 3px 5px rgba(212, 93, 196, 0.555);
@@ -137,18 +157,22 @@
     letter-spacing: .25px;
 }
 
-.div4 {
-    grid-area: 3 / 4 / 5 / 6;
+
+
+.reports {
+    /* grid-area: 3 / 4 / 5 / 6; */
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
     justify-content: first baseline;
     align-items: center;
     background-color: #ffc0cb;
-    margin: 15px;
-    /* padding-top: 20px; */
-    height: 500px;
-    width: 500px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    /* height: 500px; */
+    width: 100%;
+    /* height: 100%; */
     border-radius: 20px;
     box-shadow: 2px 6px 5px 3px rgba(212, 93, 196, 0.555);
 
@@ -164,23 +188,27 @@
     text-transform: uppercase;
     color: #813e8e;
     margin-top: 15px;
+    /* padding-bottom: 15px; */
 }
 
 
 
 .div5 {
-    grid-area: 2 / 6 / 4 / 7;
+    /* grid-area: 2 / 6 / 4 / 7; */
     display: flex;
+    justify-self: center;
     background-color: #ffc0cb;
     text-align: center;
     border-radius: 12px;
-    width: 350px;
-    box-shadow: 6px 4px 5px rgba(212, 93, 196, 0.555);
-    margin-right: 10px;
-    height: 600px;
+    width: 95%;
+    box-shadow: 6px 4px 5px rgba(248, 119, 140, 0.555);
+    /* margin-right: 30px; */
+    /* padding-bottom: 20px; */
+    /* height: 600px; */
 }
 .finance-news {
-    padding: 1rem;
+    padding: 2rem;
+    /* margin-top: 25px; */
     background-color: #ffc0cb;
     border-radius: 12px;
     /* box-shadow: 6px 4px 5px rgba(212, 93, 196, 0.555); */
@@ -194,7 +222,7 @@
 
 .finance-news ul {
     list-style: none;
-    padding: 0;
+    padding: 0px;
 }
 
 .finance-news li {
@@ -222,3 +250,8 @@
 .dividk {
     background-color: #ffc0cb;
 }
+
+
+
+
+/*  */

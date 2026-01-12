@@ -14,26 +14,26 @@ import FinanceNews from '../components/FinanceNews'
 function HomePage() {
 
   return (
-    <div id='homeMainCont'>
+    <div id='homeMainCont' className='homeMainCont'>
     
-    <div className='homePage'>
-      <div className="div1">
+    {/* <div className='div1'> */}
+      <div className="navbar">
         <Navbar />
       </div>
-      <div className='div2'>
+      <div className='calendar'>
         <MyCalendar 
         />
       </div>
       
 
-      {/* <div className="middle">  */}
-        <div bg='#ffc0cb' shadow='md' className="div3">
-          <Quote/>
+      {/* <div className="QuoteMainDiv">  */}
+        <div bg='#ffc0cb' shadow='md' className="quote">
+          <Quote />
         </div>
         {/* </div> */}
         
 
-        <div className="div4">
+        <div className="reports">
           <h2 className='expenseReportTitle'>Expense Report</h2>
           <Reports />
         </div>
@@ -43,7 +43,7 @@ function HomePage() {
         <FinanceNews />
       </div>
     </div>
-    </div>
+    // </div>
 
   )
 }
