@@ -108,22 +108,23 @@ function CreatePage({onExpenseCreate} ) {
           Create New Expense
         </Heading> */}
         <Text 
-        className='pageTitle'
-          fontSize={'50'}
+        className='createPageTitle'
+          // fontSize={'50'}
           fontWeight={'bold'}
-          bgGradient={'linear(to-r, cyan.400, blue-500'}
-          bgClip={'text'}
+          // bgGradient={'linear(to-r, cyan.400, blue-500'}
+          // bgClip={'text'}
           textAlign={'center'}
-          color={'#f071b3'}
+          // color={'#f071b3'}
           textTransform='uppercase'
         >Create New Expense</Text>
 
         <Box className='createExpenseBox'
-          w={'full'} bg={useColorModeValue('#ffc0cb', 'pink.700')}
+          w={'full'} 
           p={6} rounded={'lg'}
         >
           <VStack spacing={4}>
           <Input 
+            className='expenseInput'
             placeholder='Expense Name'
             name='name'
             value={newExpense.name}
@@ -131,6 +132,7 @@ function CreatePage({onExpenseCreate} ) {
             autoComplete='off'
           />
           <Input 
+            className='expenseInput'
             placeholder='Price'
             name='price'
             type='number'
@@ -139,6 +141,7 @@ function CreatePage({onExpenseCreate} ) {
             autoComplete='off'
           />
           <Input
+            className='expenseInput'
             type="file"
             accept="image/*"
             onChange={async (e) => {
@@ -155,6 +158,7 @@ function CreatePage({onExpenseCreate} ) {
           
  
           <Select 
+            className='expenseInput'
             placeholder='Select Expense Category'
             name={'category'}
             value={newExpense.category}
@@ -179,8 +183,8 @@ function CreatePage({onExpenseCreate} ) {
           )}
       
 
-            <Button colorScheme='purple' onClick={handleAddExpense} w='full'>
-              <Link>Add Expense</Link>
+            <Button className='addExpenseBtn' onClick={handleAddExpense} w='full'>
+              <Link className='addExpenseLink'>Add Expense</Link>
             </Button>
           </VStack>
 

@@ -3,34 +3,53 @@
 .createPageCont {
     background-color: #f7d6e7;
     min-height: 100vh;
+    /* margin: auto 0; */
 }
 
-/* .createPageHeading {
-    padding: 100px 0 20px 0;
 
-    font-family: "Emilys Candy", serif;
-    font-size: 50px;
-    font-weight: 900;
-    font-style: normal;
-    letter-spacing: .25px;
-    color: #813e8e;
-} */
-
-.pageTitle {
+.createPageTitle {
     font-family: "Emilys Candy", serif;
     font-weight: 400;
     font-style: normal;
     letter-spacing: 5px;
-    padding-top: 100px;
+    padding-top: 30px;
+    font-size: medium;
+
+    background-image: url('/images/DarkPinkFlowersBg.png');
+    background-size: cover;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 .createExpenseCont {
     background-color: #f7d6e7;
+    margin-bottom: 20px;
     
 }
 
 .createExpenseBox {
-    background-color: #ffc0cb;
+    /* background-color: #ffc0cb; */
+    background-image: url('/images/PinkFlowersBg.png') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     /* border: 2px solid #a63085; */
-    box-shadow: 2px 6px 5px 3px rgba(212, 93, 196, 0.555);
+    /* box-shadow: 2px 6px 5px 3px rgba(212, 93, 196, 0.555); */
+}
+
+.expenseInput {
+    background-color: #ffc0cb !important;
+    color: azure;
+    border: solid 2px azure !important;
+}
+.expenseInput::placeholder {
+    color: azure;
+}
+
+Button.addExpenseBtn {
+    background-color: azure ;
+    color: #ffc0cb;
+    border: solid 5px #e7aeb8;
 }
