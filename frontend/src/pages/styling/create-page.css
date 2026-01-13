@@ -11,7 +11,7 @@
     font-family: "Emilys Candy", serif;
     font-weight: 400;
     font-style: normal;
-    letter-spacing: 8px;
+    letter-spacing: 5px;
     padding-top: 30px;
     font-size: medium;
 
@@ -52,4 +52,12 @@ Button.addExpenseBtn {
     background-color: azure ;
     color: #ffc0cb;
     border: solid 5px #e7aeb8;
+}
+
+
+/* MEDIA SCREENS */
+@media screen and (min-width: 375px) { 
+    .createPageTitle {
+        letter-spacing: 8px;
+    }
 }

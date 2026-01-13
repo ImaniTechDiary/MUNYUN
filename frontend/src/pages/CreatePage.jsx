@@ -141,20 +141,29 @@ function CreatePage({onExpenseCreate} ) {
             autoComplete='off'
           />
           <Input
+            id='receiptUpload'
             className='expenseInput'
             type="file"
             accept="image/*"
+            display='none' //hides choose file initial ui
             onChange={async (e) => {
               const file = e.target.files[0];
-              if (file) {
+              // guard clause
+              if (!file) return;
+              // logic
                 const base64Image = await convertToBase64(file);
                 setNewExpense({ ...newExpense, image: base64Image });
-              } else {
-                setNewExpense({...newExpense, image: ''})
-              }
             }}
             autoComplete='off'
           />
+          <Button
+            as='label'
+            htmlFor='receiptUpload'
+            className='uploadBtn'
+            w='full'
+          >
+
+          </Button>
           
  
           <Select 
