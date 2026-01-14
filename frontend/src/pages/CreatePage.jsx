@@ -100,7 +100,7 @@ function CreatePage({onExpenseCreate} ) {
   return (
     <div className='createPageCont'>
       <Navbar />
-      <Container className='createExpenseCont' maxW={'container.sm'} autoComplete='off'>
+      <Container className='createExpenseCont' maxW={'container.lg'} autoComplete='off'>
       <VStack
         spacing={8}
       >
@@ -169,7 +169,7 @@ function CreatePage({onExpenseCreate} ) {
           
  
           <Select 
-            className='expenseInput'
+            className='expenseInput selectCategory'
             placeholder='Select Expense Category'
             name={'category'}
             value={newExpense.category}

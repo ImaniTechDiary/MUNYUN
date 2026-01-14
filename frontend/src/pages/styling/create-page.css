@@ -43,10 +43,14 @@
     background-color: #ffc0cb !important;
     color: azure;
     border: solid 2px azure !important;
+    font-weight: 700;
+    letter-spacing: .7px;
+    font-size: small !important;
 }
 .expenseInput::placeholder {
     color: azure;
 }
+
 
 .receiptUploadBtn {
     background-image: url('/images/DarkPinkFlowersBg.png') !important;
@@ -54,7 +58,6 @@
     background-position: center;
     text-transform: uppercase;
     background-color: transparent !important;
-    /* opacity: .75; */
     color: azure !important;
     font-weight: 700 !important;
 }
@@ -63,21 +66,41 @@
 }
 
 .addExpenseBtn {
-    /* background-color: #ffc0cb !important ; */
     color: azure !important;
     width: 60% !important;
     background-image: url('/images/DarkPinkFlowersBg.png') !important;
     background-size: cover;
     text-transform: uppercase;
-    font-weight: 700 !important;
-    /* opacity: .75; */
-    
+    font-weight: 700 !important;  
+}
+.addExpenseBtn a {
+    text-decoration: none !important;
+}
+
+.receiptUploadBtn:hover, .addExpenseBtn:hover {
+    color: pink !important;
 }
 
 
+
 /* MEDIA SCREENS */
-@media screen and (min-width: 375px) { 
+@media screen and (min-width: 768px) { 
     .createPageTitle {
         letter-spacing: 8px;
+        font-size: x-large;
+        padding: 0;
     }
+}
+
+@media screen and (min-width: 1440px) {
+    .createPageTitle {
+        font-size: xx-large;
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    .createPageTitle {
+        font-size: 60px;
+    }
+
 }
