@@ -48,10 +48,30 @@
     color: azure;
 }
 
-Button.addExpenseBtn {
-    background-color: azure ;
-    color: #ffc0cb;
-    border: solid 5px #e7aeb8;
+.receiptUploadBtn {
+    background-image: url('/images/DarkPinkFlowersBg.png') !important;
+    background-size: cover;
+    background-position: center;
+    text-transform: uppercase;
+    background-color: transparent !important;
+    /* opacity: .75; */
+    color: azure !important;
+    font-weight: 700 !important;
+}
+.receiptUploadBtn:hover {
+
+}
+
+.addExpenseBtn {
+    /* background-color: #ffc0cb !important ; */
+    color: azure !important;
+    width: 60% !important;
+    background-image: url('/images/DarkPinkFlowersBg.png') !important;
+    background-size: cover;
+    text-transform: uppercase;
+    font-weight: 700 !important;
+    /* opacity: .75; */
+    
 }
 
 

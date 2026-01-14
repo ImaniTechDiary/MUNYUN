@@ -146,6 +146,8 @@ function CreatePage({onExpenseCreate} ) {
             type="file"
             accept="image/*"
             display='none' //hides choose file initial ui
+            // add transparent bg to chakraui so it wont override css bg
+            bg='transparent'
             onChange={async (e) => {
               const file = e.target.files[0];
               // guard clause
@@ -159,10 +161,10 @@ function CreatePage({onExpenseCreate} ) {
           <Button
             as='label'
             htmlFor='receiptUpload'
-            className='uploadBtn'
-            w='full'
+            className='receiptUploadBtn'
+            w='60%'
           >
-
+            Upload Receipt
           </Button>
           
  
