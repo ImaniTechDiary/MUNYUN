@@ -64,22 +64,34 @@ function CategorizedExpenses() {
   return (
     <div className='categorizePage'>
       <Navbar />
-      <Container >
-        <Heading mt={4}>Categorize Expenses</Heading>
-        <VStack align="start" spacing={4} mt={4}>
+      <Container className='categoryContainer' >
+        <Heading 
+          className='categorizePageTitle'
+          // mt={4}
+        >
+          Categorize Expenses
+        </Heading>
+        <VStack align="start" 
+          // spacing={4} 
+          mt={4}
+        >
         
 
           <DragDropContext onDragEnd={handleDragEnd}>
             {Object.keys(categories).map((category, catIdx) => (
-              <Box key={category} w="100%" bg={catIdx % 2 === 0 ? 'gray.50' : 'gray.100'} p={4} borderRadius="md" boxShadow="sm">
-                <Heading size="sm" mb={2}>{category.toUpperCase()}</Heading>
+              <Box key={category} className='categoryBox' w="100%" bg={catIdx % 2 === 0 ? 'pink.200' : 'pink.200'} p={4} borderRadius="md" boxShadow="md">
+                <Heading 
+                  className='categoryHeading'
+                  size="sm" 
+                  mb={2}>{category.toUpperCase()}
+                </Heading>
                 <Droppable droppableId={category}>
                   {(provided) => (
                     <Table ref={provided.innerRef} {...provided.droppableProps} size="sm" variant="striped">
                       <Thead>
                         <Tr>
-                          <Th>Name</Th>
-                          <Th>Price</Th>
+                          <Th className='subTitle'>Name</Th>
+                          <Th className='subTitle'>Price</Th>
                         </Tr>
                       </Thead>
                       <Tbody>
@@ -87,8 +99,8 @@ function CategorizedExpenses() {
                           <Draggable key={expense._id} draggableId={expense._id} index={index}>
                             {(provided) => (
                               <Tr ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                <Td>{expense.name}</Td>
-                                <Td>${expense.price}</Td>
+                                <Td className='expenseNameCell'>{expense.name}</Td>
+                                <Td className='expensePriceCell'>${expense.price}</Td>
                               </Tr>
                             )}
                           </Draggable>

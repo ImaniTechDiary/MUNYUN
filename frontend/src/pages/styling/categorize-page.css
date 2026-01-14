@@ -2,3 +2,37 @@
     background-color: #f7d6e7;
     min-height: 100vh;
 }
+
+.categorizePageTitle {
+    font-family: "Emilys Candy", serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 5px;
+    padding-top: 30px;
+    font-size: medium !important;
+    background-image: url('/images/DarkPinkFlowersBg.png');
+    background-size: cover;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.categoryHeading {
+    background-image: url('/images/DarkPinkFlowersBg.png');
+    background-size: cover;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+}
+
+.subTitle {
+    color: azure !important;
+}
+
+.expenseNameCell, .expensePriceCell {
+    background-color: #f7d1d7;
+}
