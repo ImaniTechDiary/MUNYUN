@@ -21,7 +21,11 @@ import Navbar from '../components/Navbar';
 
 import './styling/categorize-page.css'
 function CategorizedExpenses() {
-  const { fetchExpenses, expenses } = useExpenseTracking();
+  const { 
+    fetchExpenses, 
+    expenses,
+    updateExpenseCategory,
+} = useExpenseTracking();
   const [initialAmount, setInitialAmount] = useState(() => Number(localStorage.getItem('initialAmount')) || 0);
   const [remainingAmount, setRemainingAmount] = useState(() => Number(localStorage.getItem('remainingAmount')) || 0);
   const [isAmountSet, setIsAmountSet] = useState(() => JSON.parse(localStorage.getItem('isAmountSet')) || false);
@@ -43,23 +47,65 @@ function CategorizedExpenses() {
   }, [expenses]);
 
 
+  const handleDragEnd = async (result) => {
+  const { source, destination } = result;
+  if (!destination) return;
 
-  const handleDragEnd = (result) => {
-    const { source, destination } = result;
-    if (!destination) return;
-    const sourceCategory = source.droppableId;
-    const destCategory = destination.droppableId;
-    if (sourceCategory === destCategory && source.index === destination.index) return;
+  const sourceCategory = source.droppableId;
+  const destCategory = destination.droppableId;
 
-    const updatedCategories = { ...categories };
-    const sourceItems = Array.from(updatedCategories[sourceCategory]);
-    const [movedItem] = sourceItems.splice(source.index, 1);
-    updatedCategories[sourceCategory] = sourceItems;
-    const destItems = Array.from(updatedCategories[destCategory] || []);
-    destItems.splice(destination.index, 0, movedItem);
-    updatedCategories[destCategory] = destItems;
-    setCategories(updatedCategories);
-  };
+  if (
+    sourceCategory === destCategory &&
+    source.index === destination.index
+  ) {
+    return;
+  }
+
+  const updatedCategories = { ...categories };
+
+  const sourceItems = Array.from(updatedCategories[sourceCategory]);
+  const [movedItem] = sourceItems.splice(source.index, 1);
+  updatedCategories[sourceCategory] = sourceItems;
+
+  const destItems = Array.from(updatedCategories[destCategory] || []);
+  destItems.splice(destination.index, 0, {
+    ...movedItem,
+    category: destCategory,
+  });
+
+  updatedCategories[destCategory] = destItems;
+
+  // Optimistic UI
+  setCategories(updatedCategories);
+
+  // Persist to backend + Zustand
+  const resultUpdate = await updateExpenseCategory(
+    movedItem._id,
+    destCategory
+  );
+
+  if (!resultUpdate?.success) {
+    console.error('Failed to update category');
+    setCategories(categories); // rollback
+  }
+};
+
+  // const handleDragEnd = (result) => {
+  //   const { source, destination } = result;
+  //   if (!destination) return;
+  //   const sourceCategory = source.droppableId;
+  //   const destCategory = destination.droppableId;
+  //   if (sourceCategory === destCategory && source.index === destination.index) return;
+
+  //   const updatedCategories = { ...categories };
+  //   const sourceItems = Array.from(updatedCategories[sourceCategory]);
+  //   const [movedItem] = sourceItems.splice(source.index, 1);
+  //   updatedCategories[sourceCategory] = sourceItems;
+  //   const destItems = Array.from(updatedCategories[destCategory] || []);
+  //   destItems.splice(destination.index, 0, movedItem);
+  //   updatedCategories[destCategory] = destItems;
+  //   setCategories(updatedCategories);
+  // };
 
   return (
     <div className='categorizePage'>
@@ -71,7 +117,11 @@ function CategorizedExpenses() {
         >
           Categorize Expenses
         </Heading>
-        <VStack align="start" 
+        <VStack 
+          // align='stretch'
+          // mt={6}
+          // spacing={{ base: 4, md: 6, xl: 8}}
+          align="start" 
           // spacing={4} 
           mt={4}
         >

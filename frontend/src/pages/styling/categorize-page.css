@@ -29,10 +29,78 @@
     letter-spacing: 2px;
 }
 
+.categoryContainer {
+    max-width: 1200px;
+}
+
 .subTitle {
     color: azure !important;
 }
 
+.categoryBox {
+    width: 100%;
+    max-width: 100%;
+}
 .expenseNameCell, .expensePriceCell {
     background-color: #f7d1d7;
+}
+tbody tr {
+    height: 48px;
+}
+
+
+/* MEDIA SCREENS */
+@media screen and (min-width: 768px) {
+    .categorizePageTitle {
+        font-size: x-large !important;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .categorizePageTitle {
+        font-size: x-large !important;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .categorizePageTitle {
+        font-size: xx-large !important;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .categorizePageTitle {
+        font-size: xx-large !important;
+    }
+    .categoryContainer {
+        max-width: 1600px;
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    .categorizePageTitle {
+        font-size: 3rem !important;
+    }
+    .categoryContainer {
+        max-width: 2000px !important;
+    }
+    .subTitle {
+        font-size: 1.5rem !important;
+    }
+    tbody tr {
+        height: 64px;
+    }
+
+    /* .categoryBox {
+        padding: 2.5rem !important;
+    } */
+
+    .categoryHeading {
+        font-size: 2rem !important; 
+    }
+
+    .expenseNameCell,
+    .expensePriceCell {
+        font-size: 1.6rem !important;
+    } 
 }
