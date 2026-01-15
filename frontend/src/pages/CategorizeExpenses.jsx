@@ -150,6 +150,11 @@ function CategorizedExpenses() {
                             {(provided) => (
                               <Tr ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                                 <Td className='expenseNameCell'>{expense.name}</Td>
+
+                                <Td>
+                                  Suggested • {expense.aiMeta?.confidence || 0}% confidence
+                                </Td>
+
                                 <Td className='expensePriceCell'>${expense.price}</Td>
                               </Tr>
                             )}
