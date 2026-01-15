@@ -17,6 +17,10 @@ const expenseSchema = new mongoose.Schema({
         type: String,
         default: 'Uncategorized'
     },
+    aiMeta: {
+        confidence: Number,
+        source: String,
+    }
 }, {
     // createdAt, updatedAt
     timestamps: true

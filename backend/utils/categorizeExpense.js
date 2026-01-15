@@ -1,9 +1,10 @@
 import CategoryLearning from '../models/CategoryLearning.js';
 
 const BASE_RULES = {
-  food: ['restaurant', 'cafe', 'coffee', 'starbucks', 'chipotle'],
+  food: ['restaurant', 'cafe', 'coffee', 'starbucks', 'chipotle', 'groceries'],
   transport: ['uber', 'lyft', 'gas', 'shell', 'chevron'],
-  entertainment: ['netflix', 'spotify', 'movie'],
+  subcriptions: ['netflix', 'spotify'],
+  entertainment: ['movies', 'painting'],
   shopping: ['amazon', 'target', 'walmart'],
 };
 
@@ -40,3 +41,25 @@ export const categorizeExpense = async (name, userId) => {
     confidence: bestMatch.score * 25,
   };
 };
+
+
+export const learnFromCorrection = async (expense, newCategory, userId) => {
+    try {
+        const categoryKeywords = expense.name.toLowerCase().split(' ')
+
+        for (const word of categoryKeywords) {
+            if (word.length < 4) continue;
+
+            await categoryLearningModel.findOneAndUpdate(
+                { userId, categoryKeyword: word}, 
+                {
+                    category: newCategory,
+                    $inc: {confidence: 1}
+                },
+                { upsert: true, new: true}
+            )
+        }
+    } catch (error) {
+
+    }
+}
