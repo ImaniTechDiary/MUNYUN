@@ -1,6 +1,9 @@
 import Expense from '../models/expense.model.js';
 import mongoose from 'mongoose';
 
+// MODELS
+import categoryLearningModel from '../models/categoryLearning.model.js';
+
 export const getExpenses = async (req, res) => { 
     try {
         const expenses = await Expense.find({}) //fetching an empty object will find all the expenses in the database
