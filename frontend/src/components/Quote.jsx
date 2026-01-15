@@ -23,8 +23,8 @@ const Quote = () => {
 
 
   return (
-    <div className="p-4 text-center">
-      <p className="text-lg font-semibold">"{quote}"</p>
+    <div className="p-4 text-center quoteDiv">
+      <p className="text-lg font-semibold quoteText">"{quote}"</p>
     </div>
   );
 };

@@ -7,7 +7,7 @@ import { IoMoon } from 'react-icons/io5'
 import { LuSun } from 'react-icons/lu'
 // import { useExpenseTracking } from '../tracking/expense'
 
-import homeLogo from '../images/logoipsum-345.svg'
+import homeLogo from '../images/Munyun-logo.png'
 import PinkFlower from '../images/3d-Pink-Flower.png'
 
 
@@ -39,20 +39,6 @@ function Navbar() {
 
           </Text>
 
-          {/* <HStack spacing={4} alignItems={'center'}>
-            <Link to={'/create'}>
-            Create Expense
-            </Link>
-            <Link to={'/view-expenses'}>
-            View Expenses
-            </Link>
-            <Link to={'/zero-based'}>
-            ZB
-            </Link>
-            <Button onClick={toggleColorMode}>
-              {colorMode === 'light' ? <IoMoon /> : <LuSun size='20' />}
-            </Button>
-          </HStack> */}
 
           <HStack className='mainFlowerDiv'>
             <div className="flowerCont">
@@ -71,10 +57,10 @@ function Navbar() {
               <img src={PinkFlower} className='flower'/>
               <Link href="link.html" className="link">Budget</Link>
             </div>
-            {/* <div className="flowerCont">
+            <div className="flowerCont">
               <img src={PinkFlower} className='flower'/>
               <Link href="link.html" className="link">Click link</Link>
-            </div> */}
+            </div>
             
           </HStack>
 

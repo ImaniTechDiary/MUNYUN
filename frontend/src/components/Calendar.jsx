@@ -111,11 +111,11 @@ const MyCalendar = () => {
        `}
       </style>
       <div className="calenderMainCont">
-        <Button className='createEventBtn shadow' variant='primary' onClick={handleShow}>
+        <Button className='createEventBtn div2 shadow' variant='primary' onClick={handleShow}>
         Create Event
       </Button>
 
-    <Calendar className='calendarCont'
+    <Calendar className='calendarCont div4'
     localizer={localizer} 
     events={events} 
     startAccessor="start" 
