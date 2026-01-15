@@ -1,8 +1,7 @@
 import Expense from '../models/expense.model.js';
 import mongoose from 'mongoose';
 
-// MODELS
-import categoryLearningModel from '../models/categoryLearning.model.js';
+
 
 export const getExpenses = async (req, res) => { 
     try {
@@ -70,19 +69,54 @@ export const deleteExpense = async (req, res) => {
     }
 };
 
+// export const updateCategory = async (req, res) => {
+//     try {
+//         const {category} = req.body
+//         const updateTheExpense = await Expense.findByIdAndUpdate(
+//             req.params.id,
+//             {category},
+//             {new: true}
+//         )
+//         res.status(200).json(updateTheExpense)
+//     } catch (error) {
+//         res.status(500).json({error: 'Failed to update category'})
+//     }
+// }
+
 export const updateCategory = async (req, res) => {
-    try {
-        const {category} = req.body
-        const updateTheExpense = await Expense.findByIdAndUpdate(
-            req.params.id,
-            {category},
-            {new: true}
-        )
-        res.status(200).json(updateTheExpense)
-    } catch (error) {
-        res.status(500).json({error: 'Failed to update category'})
+  try {
+    const { category: updatedCategory } = req.body;
+
+    // 1️- Get the existing expense FIRST
+    const expense = await Expense.findById(req.params.id);
+
+    if (!expense) {
+      return res.status(404).json({ error: 'Expense not found' });
     }
-}
+
+    const userId = req.user?._id || 'default-user' // placeholder until auth is set up
+    // 2️- Only learn if category actually changed
+    if (updatedCategory && updatedCategory !== expense.category) {
+      await learnFromCorrection(
+        expense,
+        updatedCategory,
+        'default-user'
+        // 'req.user._id '  // or a placeholder if auth isn't ready yet
+      );
+    }
+
+    // 3️- Update the expense
+    expense.category = updatedCategory;
+    await expense.save();
+
+    res.status(200).json({ success: true, data: expense });
+
+  } catch (error) {
+    console.error('Category update error:', error);
+    res.status(500).json({ error: 'Failed to update category' });
+  }
+};
+
 
 
 export const getExpenseReport = async (req, res) => {
@@ -107,3 +141,5 @@ export const getExpenseReport = async (req, res) => {
     res.status(500).json({ message: 'Failed to generate report' });
   }
 };
+
+
