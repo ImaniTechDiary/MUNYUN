@@ -95,9 +95,11 @@ export const useExpenseTracking = create((set) => ({
 
         set((state) => ({
             expenses: state.expenses.map((expense) =>
-                expense._id === eid
-                    ? { ...expense, category }
-                    : expense
+                // helps to auto-update when using aiMeta in mondel, w/o having to touch the frontend logic again
+                expense._id === eid ? data.data : expense 
+                // expense._id === eid
+                //     ? { ...expense, category }
+                //     : expense
             ),
         }));
 
