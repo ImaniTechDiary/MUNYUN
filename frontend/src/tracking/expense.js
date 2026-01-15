@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { updateExpense } from '../../../backend/controllers/expense.controller';
 
 export const useExpenseTracking = create((set) => ({
     expenses: [],
@@ -72,7 +73,38 @@ export const useExpenseTracking = create((set) => ({
         }))    
         
     },
-}))
+    
+
+    updateExpenseCategory: async (eid, category) => {
+        const res = await fetch(
+            `http://localhost:8000/api/expenses/update-category/${eid}`,
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ category }),
+            }
+        );
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            return { success: false, message: 'Failed to update category' };
+        }
+
+        set((state) => ({
+            expenses: state.expenses.map((expense) =>
+                expense._id === eid
+                    ? { ...expense, category }
+                    : expense
+            ),
+        }));
+
+        return { success: true, data };
+    },
+}));
+
 
 
 
