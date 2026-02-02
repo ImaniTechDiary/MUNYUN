@@ -2,18 +2,31 @@ import React, { useState, useEffect } from 'react'
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts'
 
 import * as d3 from 'd3'
+import { API_BASE_URL } from '../lib/api'
 
 
 
 const Reports = () => {
    
     const [data, setData] = useState([])
+    const [status, setStatus] = useState('loading')
 
     useEffect(() => {
-        fetch('http://localhost:8000/api/expenses/report') // Update w/ backend url
-        .then(response => response.json())
-        .then(data => setData(data))
-        .catch(error => console.error('Error fetching data', error))
+        fetch(`${API_BASE_URL}/api/expenses/report`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Report request failed: ${response.status}`)
+            }
+            return response.json()
+        })
+        .then(data => {
+            setData(Array.isArray(data) ? data : [])
+            setStatus('ready')
+        })
+        .catch(error => {
+            console.error('Error fetching data', error)
+            setStatus('error')
+        })
     }, [])
 
 
@@ -28,6 +41,14 @@ const Reports = () => {
         ).domain([0, 1])
 
         return combinedColorPalette(index / (totalColors - 1))
+    }
+
+    if (status === 'error') {
+        return <p className="quoteText">Expense report currently unavailable.</p>
+    }
+
+    if (status === 'ready' && data.length === 0) {
+        return <p className="quoteText">No expense data yet.</p>
     }
 
     return (

@@ -35,8 +35,10 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    /* border: 2px solid #a63085; */
-    /* box-shadow: 2px 6px 5px 3px rgba(212, 93, 196, 0.555); */
+    border-radius: 18px;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    max-width: 720px;
+    margin: 0 auto;
 }
 
 .expenseInput {
@@ -45,7 +47,9 @@
     border: solid 2px azure !important;
     font-weight: 700;
     letter-spacing: .7px;
-    font-size: small !important;
+    font-size: clamp(0.85rem, 1.1vw, 1rem) !important;
+    min-height: 44px;
+    padding: 0.7rem 0.9rem;
 }
 .expenseInput::placeholder {
     color: azure;
@@ -60,6 +64,7 @@
     background-color: transparent !important;
     color: azure !important;
     font-weight: 700 !important;
+    max-width: 420px;
 }
 .receiptUploadBtn:hover {
 
@@ -72,6 +77,7 @@
     background-size: cover;
     text-transform: uppercase;
     font-weight: 700 !important;  
+    max-width: 420px;
 }
 .addExpenseBtn a {
     text-decoration: none !important;

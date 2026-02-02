@@ -124,7 +124,7 @@ function CreatePage({onExpenseCreate} ) {
         >
           <VStack spacing={4}>
           <Input 
-            className='expenseInput'
+            className='expenseInput munyun-input'
             placeholder='Expense Name'
             name='name'
             value={newExpense.name}
@@ -132,7 +132,7 @@ function CreatePage({onExpenseCreate} ) {
             autoComplete='off'
           />
           <Input 
-            className='expenseInput'
+            className='expenseInput munyun-input'
             placeholder='Price'
             name='price'
             type='number'
@@ -142,7 +142,7 @@ function CreatePage({onExpenseCreate} ) {
           />
           <Input
             id='receiptUpload'
-            className='expenseInput'
+            className='expenseInput munyun-input'
             type="file"
             accept="image/*"
             display='none' //hides choose file initial ui
@@ -161,7 +161,7 @@ function CreatePage({onExpenseCreate} ) {
           <Button
             as='label'
             htmlFor='receiptUpload'
-            className='receiptUploadBtn'
+            className='receiptUploadBtn munyun-btn'
             w='60%'
           >
             Upload Receipt
@@ -169,7 +169,7 @@ function CreatePage({onExpenseCreate} ) {
           
  
           <Select 
-            className='expenseInput selectCategory'
+            className='expenseInput selectCategory munyun-select'
             placeholder='Select Expense Category'
             name={'category'}
             value={newExpense.category}
@@ -187,6 +187,7 @@ function CreatePage({onExpenseCreate} ) {
           {useCustomCategory && (
             <Input 
               mt={2}
+              className='expenseInput munyun-input'
               placeholder='Enter Custom Category'
               value={customCategory}
               onChange={(e) => setCustomCategory(e.target.value)}
@@ -194,7 +195,7 @@ function CreatePage({onExpenseCreate} ) {
           )}
       
 
-            <Button className='addExpenseBtn' onClick={handleAddExpense} w='full'>
+            <Button className='addExpenseBtn munyun-btn' onClick={handleAddExpense} w='full'>
               <Link className='addExpenseLink'>Add Expense</Link>
             </Button>
           </VStack>

@@ -7,6 +7,17 @@
 
 .homeMainCont {
     background-color: #f7d6e7;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto auto;
+    grid-template-areas:
+        "nav"
+        "right"
+        "left"
+        "reports"
+        "finance";
+    gap: 20px;
+    padding: 16px;
 }
 
 .homePage {
@@ -22,7 +33,7 @@
 
 /* DIV 1 STYLES : START */
 .navbar {
-    grid-area: 1 / 1 / 2 / 7;
+    grid-area: nav;
     overflow: hidden; /* make sure navbar doesn't overflow */
     display: flex;
     flex-direction: column;
@@ -79,6 +90,8 @@
 
 .calendar {
     background-color: #f7d6e7;
+    grid-area: left;
+    align-self: start;
 }
     /* Calender Styling */
     .calenderMainCont {
@@ -88,30 +101,48 @@
         width: 100%;
     }
     .createEventBtn {
-        background-color: #ffc0cb;
-        color: #f4d8dd;
+        background-image: url('/images/DarkPinkFlowersBg.png') ;
+        background-size: cover;
+        background-position: center;
+        text-transform: uppercase;
+        background-color: transparent !important;
+        color: azure !important;
+        /* background-color: #ffc0cb !important; */
         width: 80%;
         height: 30%;
-        margin-bottom: 20px;
+        /* margin-bottom: 20px; */
         border-radius: 10px; 
-        border: solid 2px #ff69b4 !important;
+        opacity: 10 !important;
+        letter-spacing: 2px;
+        font-size: medium !important;
+        /* box-shadow: 5px 3px 5px rgba(212, 93, 196, 0.555) !important; */
+        /* border: solid 2px #ff69b4 !important; */
     }
     .createEventBtn:hover {
-        background-color: #813e8e !important;
+        /* background-color: #813e8e !important; */
         color: #f4d8dd !important;
         border: dashed 3px #ff69b4 !important;
     }
 
+    div.calendar {
+        
+    }
     .calendarCont {
         width: 100%;
         margin: auto;
         padding-top: 15px;
         background-color: #ffc0cb;
         border-radius: 10px;
-        box-shadow: 0px 4px 10px rgba(212, 93, 196, 0.555);
+        
+        /* box-shadow: 5px 3px 5px  rgba(212, 93, 196, 0.555); */
     }
 
 
+
+.div3 {
+    grid-area: right;
+    align-self: start;
+}
 
 .quote {
     background-color: #ffc0cb !important;
@@ -148,6 +179,8 @@
     font-weight: 400;
     font-style: normal;
     font-size: 18px;
+    grid-area: reports;
+    align-self: start;
 }
 .expenseReportTitle {
     font-size: 20px;
@@ -167,6 +200,9 @@
     border-radius: 12px;
     width: 95%;
     box-shadow: 2px 6px 5px 3px rgba(212, 93, 196, 0.555);
+    grid-area: finance;
+    align-items: center;
+    justify-content: center;
 }
 .finance-news {
     padding: 2rem;
@@ -215,8 +251,60 @@
 
 
 /* MEDIA SCREENS */
+@media screen and (max-width: 1439px) {
+    .homeMainCont {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto auto auto auto auto;
+        grid-template-areas:
+            "nav"
+            "right"
+            "left"
+            "reports"
+            "finance";
+        padding: 16px;
+    }
+    .div3,
+    .quote,
+    .reports,
+    .financeNews,
+    .calendarCont {
+        width: 100%;
+    }
+}
 
-@media screen and (min-width: 1024px) and (max-width: 1440px) {
+@media screen and (min-width: 1440px) {
+    .homeMainCont {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas:
+            "nav nav"
+            "left right"
+            "left reports"
+            "finance finance";
+        gap: 24px;
+        padding: 24px 32px;
+    }
+    .quote,
+    .reports,
+    .financeNews {
+        width: 95%;
+    }
+    .calendarCont {
+        width: 100%;
+    }
+    .createEventBtn {
+        font-size: clamp(18px, 1.2vw, 24px);
+        letter-spacing: 2px;
+    }
+    .quoteText {
+        font-size: clamp(22px, 1.5vw, 30px);
+    }
+    .expenseReportTitle {
+        font-size: clamp(22px, 1.5vw, 30px);
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
     .createEventBtn {
         width: 40%;
         align-self: flex-start;
@@ -241,7 +329,7 @@
     }
     .calendarCont {
         /* width: 2000px; */
-        height: 100%;
+        height: 760px;
     }
 
     .quote, .reports, .financeNews {

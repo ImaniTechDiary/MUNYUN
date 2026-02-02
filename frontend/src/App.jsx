@@ -10,6 +10,7 @@ import CategorizeExpenses from './pages/CategorizeExpenses'
 
 // STYLING
 import '../src/pages/styling/main.css'
+import '../src/pages/styling/forms.css'
  
 // COMPONENTS
 import Navbar from './components/Navbar'

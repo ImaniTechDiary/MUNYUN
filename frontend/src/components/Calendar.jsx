@@ -111,7 +111,7 @@ const MyCalendar = () => {
        `}
       </style>
       <div className="calenderMainCont">
-        <Button className='createEventBtn div2 shadow' variant='primary' onClick={handleShow}>
+        <Button className='createEventBtn div2 shadow munyun-btn' variant='primary' onClick={handleShow}>
         Create Event
       </Button>
 
@@ -130,9 +130,9 @@ const MyCalendar = () => {
       
 
     {/* Modal for creating events */}
-    <Modal show={showModal} onHide={handleClose}>
+    <Modal show={showModal} onHide={handleClose} contentClassName="munyun-modal-content">
       <Modal.Header closeButton>
-        <Modal.Title>Create New Event</Modal.Title>
+        <Modal.Title className="munyun-modal-title">Create New Event</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -144,6 +144,7 @@ const MyCalendar = () => {
               value={newEvent.title}
               onChange={handleChange}
               placeholder="Enter event title"
+              className="munyun-input"
             />
           </Form.Group>
           <Form.Group>
@@ -153,6 +154,7 @@ const MyCalendar = () => {
               name="start"
               value={newEvent.start}
               onChange={handleChange}
+              className="munyun-input"
             />
           </Form.Group>
           <Form.Group>
@@ -162,15 +164,16 @@ const MyCalendar = () => {
               name="end"
               value={newEvent.end}
               onChange={handleChange}
+              className="munyun-input"
             />
           </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button className="munyun-btn munyun-btn--ghost" variant="secondary" onClick={handleClose}>
           Cancel
         </Button>
-        <Button variant="primary" onClick={handleAddEvent}>
+        <Button className="munyun-btn" variant="primary" onClick={handleAddEvent}>
           Add Event
         </Button>
       </Modal.Footer>

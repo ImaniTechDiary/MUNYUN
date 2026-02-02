@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Emilys+Candy&display=swap');
+
+:root {
+  --munyun-pink-50: #f7d6e7;
+  --munyun-pink-100: #ffc0cb;
+  --munyun-rose: #f071b3;
+  --munyun-purple: #813e8e;
+  --munyun-cream: #f4f0f6;
+  --munyun-shadow: rgba(212, 93, 196, 0.35);
+}
+
+.munyun-input,
+.munyun-select,
+.munyun-textarea {
+  width: 100%;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 0.7rem 0.9rem;
+  border-radius: 12px;
+  background-color: var(--munyun-pink-100) !important;
+  border: 2px solid var(--munyun-cream) !important;
+  color: var(--munyun-cream) !important;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  box-shadow: 0 2px 6px rgba(212, 93, 196, 0.2);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.munyun-input::placeholder,
+.munyun-textarea::placeholder {
+  color: rgba(244, 240, 246, 0.85);
+}
+
+.munyun-input:focus,
+.munyun-select:focus,
+.munyun-textarea:focus {
+  outline: none;
+  border-color: var(--munyun-rose) !important;
+  box-shadow: 0 0 0 3px rgba(240, 113, 179, 0.35);
+  transform: translateY(-1px);
+}
+
+.munyun-input:disabled,
+.munyun-select:disabled,
+.munyun-textarea:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.munyun-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  background-image: url('/images/DarkPinkFlowersBg.png');
+  background-size: cover;
+  background-position: center;
+  border: 2px solid transparent;
+  color: var(--munyun-cream) !important;
+  box-shadow: 0 4px 10px rgba(212, 93, 196, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.munyun-btn:hover {
+  transform: translateY(-1px);
+  border-color: #ff69b4;
+  color: #f4d8dd !important;
+}
+
+.munyun-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(240, 113, 179, 0.35), 0 4px 10px rgba(212, 93, 196, 0.35);
+}
+
+.munyun-btn--ghost {
+  background: transparent !important;
+  border: 2px dashed #ff69b4 !important;
+  color: var(--munyun-purple) !important;
+  box-shadow: none;
+}
+
+.munyun-modal-content {
+  background-color: var(--munyun-pink-100);
+  border: 2px solid var(--munyun-rose);
+  border-radius: 16px;
+  color: var(--munyun-purple);
+}
+
+.munyun-modal-title {
+  font-family: "Emilys Candy", serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--munyun-purple);
+}
+
+.munyun-modal-content .modal-header,
+.munyun-modal-content .modal-footer {
+  border-color: rgba(129, 62, 142, 0.2);
+}
+
+.munyun-modal-content .form-label {
+  color: var(--munyun-purple);
+  font-weight: 600;
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+}

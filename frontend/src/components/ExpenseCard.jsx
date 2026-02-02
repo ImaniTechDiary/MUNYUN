@@ -106,32 +106,32 @@ const ExpenseCard = ({expense}) => {
           <ModalOverlay/>
 
 
-          <ModalContent>
-            <ModalHeader>Update Expense</ModalHeader>
+          <ModalContent className='munyun-modal-content'>
+            <ModalHeader className='munyun-modal-title'>Update Expense</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
               <VStack spacing={4}>
-                <Input placeholder='Expense Name' name='name' value={updatedExpense.name}
+                <Input className='munyun-input' placeholder='Expense Name' name='name' value={updatedExpense.name}
                   onChange={(e) => setUpdatedExpense({ ...updatedExpense, name: e.target.value})}
                 />
-                <Input placeholder='Expense Price' name='price' type='number' value={updatedExpense.price}
+                <Input className='munyun-input' placeholder='Expense Price' name='price' type='number' value={updatedExpense.price}
                   onChange={(e) => setUpdatedExpense({ ...updatedExpense, price: e.target.value})}
                 />
-                <Input placeholder='Image URL' name='image' value={updatedExpense.image}
+                <Input className='munyun-input' placeholder='Image URL' name='image' value={updatedExpense.image}
                   onChange={(e) => setUpdatedExpense({ ...updatedExpense, image: e.target.value})}
                 />
-                <Input placeholder='Expense Category' name='category' value={updatedExpense.category}
+                <Input className='munyun-input' placeholder='Expense Category' name='category' value={updatedExpense.category}
                   onChange={(e) => setUpdatedExpense({ ...updatedExpense, category: e.target.value})}
                 />
               </VStack>
             </ModalBody>
 
             <ModalFooter>
-              <Button colorScheme='blue' mr={3} 
+              <Button className='munyun-btn' colorScheme='blue' mr={3} 
               onClick={() => handleUpdateExpense(expense._id, updatedExpense)}>
                 Update
               </Button>
-              <Button variant='ghost' onClick={onClose}>
+              <Button className='munyun-btn munyun-btn--ghost' variant='ghost' onClick={onClose}>
                 Cancel
               </Button>
             </ModalFooter>
