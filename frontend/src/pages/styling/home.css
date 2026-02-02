@@ -93,6 +93,19 @@
     grid-area: left;
     align-self: start;
 }
+
+/* React Big Calendar line color overrides */
+.calendarCont .rbc-month-view,
+.calendarCont .rbc-day-bg,
+.calendarCont .rbc-month-row,
+.calendarCont .rbc-time-view,
+.calendarCont .rbc-time-header,
+.calendarCont .rbc-time-content,
+.calendarCont .rbc-timeslot-group,
+.calendarCont .rbc-header,
+.calendarCont .rbc-date-cell {
+    border-color: #ff69b4 !important;
+}
     /* Calender Styling */
     .calenderMainCont {
         display: flex;
@@ -121,7 +134,7 @@
     .createEventBtn:hover {
         /* background-color: #813e8e !important; */
         color: #f4d8dd !important;
-        border: dashed 3px #ff69b4 !important;
+        border: solid 3px #ff69b4 !important;
     }
 
     div.calendar {
@@ -133,9 +146,26 @@
         padding-top: 15px;
         background-color: #ffc0cb;
         border-radius: 10px;
+        border: 2px solid #ff69b4;
         
         /* box-shadow: 5px 3px 5px  rgba(212, 93, 196, 0.555); */
     }
+
+/* Calendar toolbar (heading area) */
+.calendarCont .rbc-toolbar {
+    color: #ff69b4;
+}
+
+.calendarCont .rbc-toolbar button {
+    border-color: #ff69b4;
+    color: #ff69b4;
+}
+
+.calendarCont .rbc-toolbar button.rbc-active,
+.calendarCont .rbc-toolbar button:active {
+    background-color: #ff69b4;
+    color: #fff;
+}
 
 
 
