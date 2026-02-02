@@ -178,6 +178,7 @@
     background-color: #ffc0cb !important;
     color:#813e8e;
     border-radius: 12px;
+    border: 2px solid #ff69b4;
     display: flex;
     justify-self: center;
     width: 95%;
@@ -203,6 +204,7 @@
     width: 95%;
     justify-self: center;
     border-radius: 20px;
+    border: 2px solid #ff69b4;
     box-shadow: 2px 6px 5px 3px rgba(212, 93, 196, 0.555);
 
     font-family: "Emilys Candy", serif;
@@ -228,6 +230,7 @@
     background-color: #ffc0cb;
     text-align: center;
     border-radius: 12px;
+    border: 2px solid #ff69b4;
     width: 95%;
     box-shadow: 2px 6px 5px 3px rgba(212, 93, 196, 0.555);
     grid-area: finance;
