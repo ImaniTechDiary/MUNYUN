@@ -2,6 +2,8 @@ import Expense from '../models/expense.model.js';
 import mongoose from 'mongoose';
 
 
+// UTILS
+import { categorizeExpense } from '../utils/categorizeExpense.js'
 
 export const getExpenses = async (req, res) => { 
     try {
@@ -15,7 +17,17 @@ export const getExpenses = async (req, res) => {
 
 
 export const createExpense = async (req, res) => {
-    const expense = req.body; // user will send this data 
+    const { category, confidence, source} = await categorizeExpense(
+        req.body.name,
+        req.user._id
+    );
+
+    const expense = await Expense.create({
+        ...req.body,
+        category,
+        aiMeta: {confidence, source}
+    })
+    // const expense = req.body; // user will send this data 
 
     // if(!expense.name || !expense.price || !expense.image) {
     //     return res.status(400).json({ success: false, message: "Please provide all fields"})

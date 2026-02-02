@@ -1,4 +1,4 @@
-import CategoryLearning from '../models/CategoryLearning.js';
+// import CategoryLearning from '../models/categoryLearning.model.js';
 
 const BASE_RULES = {
   food: ['restaurant', 'cafe', 'coffee', 'starbucks', 'chipotle', 'groceries'],
