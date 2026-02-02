@@ -191,6 +191,10 @@
     letter-spacing: .25px;
 }
 
+.quoteText {
+    text-shadow: 2px 2px 4px rgba(212, 93, 196, 0.6);
+    letter-spacing: 1px;
+}
 
 
 .reports {
