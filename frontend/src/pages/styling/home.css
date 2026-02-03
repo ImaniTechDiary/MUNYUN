@@ -219,7 +219,7 @@
     justify-content: first baseline;
     align-items: center;
     background-color: #ffc0cb;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     margin-bottom: 20px;
     width: 95%;
     justify-self: center;
@@ -337,11 +337,16 @@
             "reports finance";
         gap: 24px;
         padding: 24px 32px;
+        align-items: stretch;
     }
     .quote,
     .reports,
     .financeNews {
         width: 95%;
+    }
+    .reports,
+    .financeNews {
+        height: 100%;
     }
     .calendarCont {
         width: 100%;
