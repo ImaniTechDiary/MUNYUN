@@ -64,6 +64,15 @@
     background-color: #fff7fb;
 }
 
+.expensesTable tbody tr:hover td {
+    background-color: #813e8e;
+    color: #fff;
+}
+
+.expensesTable tbody td:last-child {
+    text-align: right;
+}
+
 @media screen and (max-width: 768px) {
     .expensesTable thead {
         display: none;
