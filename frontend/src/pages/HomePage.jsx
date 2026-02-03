@@ -1,5 +1,5 @@
 // import React from 'react'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
 import { Box } from '@chakra-ui/react'
 import './styling/home.css'
 import PinkFlower from '../images/3d-Pink-Flower.png'
@@ -12,6 +12,7 @@ import Reports from '../components/Reports'
 import Quote from '../components/Quote'
 import FinanceNews from '../components/FinanceNews'
 function HomePage() {
+  const calendarRef = useRef(null)
 
   return (
     <div id='homeMainCont' className='homeMainCont parent'>
@@ -20,17 +21,22 @@ function HomePage() {
       </div>
 
 
-      <div className='calendar'>
-        <MyCalendar 
-        />
-      </div>
-    {/* </div> */}
-
       <div className="div3"> 
         <div bg='#ffc0cb' shadow='md' className="quote">
           <Quote />
         </div>
-        </div>
+      </div>
+
+      <div className='createEventSlot'>
+        <button className='createEventBtn div2 shadow munyun-btn' onClick={() => calendarRef.current?.open()}>
+          Create Event
+        </button>
+      </div>
+
+      <div className='calendar'>
+        <MyCalendar ref={calendarRef} showCreateButton={false} />
+      </div>
+    {/* </div> */}
         
 
         <div className="reports div5">
