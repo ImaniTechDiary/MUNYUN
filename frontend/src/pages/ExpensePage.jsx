@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Container, VStack, Text, SimpleGrid } from '@chakra-ui/react'
+import { Container, VStack, Text } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { useExpenseTracking } from '../tracking/expense'
 
@@ -22,7 +22,6 @@ function ExpensePage() {
   }, [fetchExpenses])
   console.log('expenses', expenses)
 
- 
 
 
 
@@ -42,27 +41,19 @@ function ExpensePage() {
           color={'#f071b3'}
           textTransform='uppercase'
         >
-          Current Expenses
+          View All Expenses
         </Text>
 
-        <SimpleGrid
-          columns={{
-            base: 1,
-            md: 2, 
-            lg: 3
-          }}
-          spacing={10}
-          w={'full'}
-        >
+        <VStack spacing={6} w={'full'} align={'stretch'}>
           {expenses.map((expense) => (
-            <ExpenseCard key={expense._id} expense={expense} />
+            <ExpenseCard key={expense._id} expense={expense} layout='list' />
           ))}
-        </SimpleGrid>
+        </VStack>
           {/* if there are expenses in the array, then hide the no expense found text */}
           {expenses.length === 0 && (
             <Text fontSize='xl' textAlign={'center'} fontWeight={'bold'} color={'gray.500'}>
               No expenses found. {' '}
-              <Link to={'/create'}>
+              <Link to={'/expenses/create'}>
                 <Text as='span' color='blue.500' _hover={{ textDecoration: 'underling' }}>
                   Create an expense
                 </Text>
@@ -76,9 +67,6 @@ function ExpensePage() {
 }
 
 export default ExpensePage
-
-
-
 
 
 

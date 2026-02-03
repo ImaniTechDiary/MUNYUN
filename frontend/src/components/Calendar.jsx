@@ -5,6 +5,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import { Modal, Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'; // import axios for API calls
+import { API_BASE_URL } from '../lib/api';
 
 
 
@@ -25,7 +26,7 @@ const MyCalendar = () => {
   useEffect(() => {
   const fetchEvents = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/events");
+      const res = await axios.get(`${API_BASE_URL}/api/events`);
       const formattedEvents = res.data.data.map(event => ({
         ...event,
         start: new Date(event.start), // Ensure it's a Date object
@@ -72,7 +73,7 @@ const MyCalendar = () => {
     }
 
     try {
-      const res = await axios.post('http://localhost:8000/api/events', event)
+      const res = await axios.post(`${API_BASE_URL}/api/events`, event)
       setEvents([...events, res.data.data]) // Update state with new event
     } catch (error) {
       console.error('Error adding event:', error)

@@ -23,12 +23,19 @@ app.use(express.json({limit: '10mb'})) // allows us to accept JSON data in the r
 app.use(express.urlencoded({ extended: true, limit: '10mb'})) 
 
 // cors configuration
+const defaultOrigins = [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'https://munyun-frontend.onrender.com',
+];
+const envOrigins = process.env.FRONTEND_ORIGINS
+    ? process.env.FRONTEND_ORIGINS.split(',').map((origin) => origin.trim()).filter(Boolean)
+    : [];
+const allowedOrigins = envOrigins.length ? envOrigins : defaultOrigins;
+
 const corsOptions = { 
-    origin: [
-        'http://localhost:5173',
-        'http://localhost:5174',
-    ], // Vite Frontend URLs
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], //routes that can cross over
+    origin: allowedOrigins, // Vite Frontend URLs
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // routes that can cross over
     credentials: true, // Allow cookies or auth headers
  }
 

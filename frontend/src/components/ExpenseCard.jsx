@@ -7,7 +7,7 @@ import {  FaEdit as EditIcon } from 'react-icons/fa'; // imrport edit icon
 import { MdDelete as DeleteIcon } from 'react-icons/md'; //Import DeleteIcon 
 import { useExpenseTracking } from '../tracking/expense';
 
-const ExpenseCard = ({expense}) => {
+const ExpenseCard = ({expense, layout = 'grid'}) => {
   const textColor = useColorModeValue('gray.600', 'gray.200')
   const bg = useColorModeValue('white', 'gray.800')
 
@@ -74,6 +74,7 @@ const ExpenseCard = ({expense}) => {
 
   return (
     <Box
+        className={`expenseCard ${layout === 'list' ? 'expenseCard--list' : ''}`}
         shadow='lg'
         rounded='lg'
         overflow='hidden'
@@ -82,18 +83,24 @@ const ExpenseCard = ({expense}) => {
         bg='#f7d6e7'
         border='solid 5px #f071b3'
     >
-        <Image  src={expense.image} alt={expense.name} h={48} w='full' objectFit='cover'/>
+        {expense.image ? (
+          <Image className='expenseCard__image' src={expense.image} alt={expense.name} h={48} w='full' objectFit='cover'/>
+        ) : (
+          <div className="expenseCard__noImage">
+            {expense.category || 'Uncategorized'}
+          </div>
+        )}
 
-        <Box p={4}>
-        <Heading as='h3' size='md' mb={2}>
+        <Box p={4} className='expenseCard__content'>
+        <Heading as='h3' size='md' mb={2} className='expenseCard__title'>
           {expense.name}
         </Heading> 
 
-        <Text fontWeight='bold' fontSize='xl' color={textColor} mb={4}>
+        <Text fontWeight='bold' fontSize='xl' color={textColor} mb={4} className='expenseCard__price'>
           ${expense.price}
         </Text>
 
-          <HStack spacing={2}>
+          <HStack spacing={2} className='expenseCard__actions'>
             <IconButton aria-hidden="false" icon={<EditIcon />} colorScheme='blue' 
             onClick={onOpen} //handle fxn that opens and closes specified modal
             /> 

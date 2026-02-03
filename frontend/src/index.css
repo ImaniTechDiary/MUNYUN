@@ -12,3 +12,11 @@ input,
 textarea {
   cursor: text;
 }
+
+.chakra-portal :is(a, button, [role="button"], label[for], input[type="button"], input[type="submit"], input[type="reset"]):hover,
+.chakra-portal :is(.chakra-button, .chakra-link, .chakra-iconbutton, .chakra-menu-button, .chakra-editable__preview):hover,
+:is(a, button, [role="button"], label[for], input[type="button"], input[type="submit"], input[type="reset"]):hover,
+:is(.chakra-button, .chakra-link, .chakra-iconbutton, .chakra-menu-button, .chakra-editable__preview):hover,
+.link:hover {
+  cursor: url('/images/PinkFloralHand.cur'), pointer !important;
+}
