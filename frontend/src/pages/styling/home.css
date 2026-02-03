@@ -43,9 +43,13 @@
     background-color: #f7d6e7;
     padding-right: 20px;
 }
+    .mainFlowerDiv {
+        overflow: hidden;
+    }
     /* flower animation and styling */
     .flowerCont {
         position: relative;
+        overflow: hidden;
     }
      /* spin the flower */
     .flower {
