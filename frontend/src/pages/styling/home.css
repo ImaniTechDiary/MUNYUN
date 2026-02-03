@@ -178,6 +178,7 @@
 .div3 {
     grid-area: quote;
     align-self: start;
+    justify-self: center;
 }
 
 .createEventSlot {
