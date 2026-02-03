@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -13,7 +13,7 @@ import { API_BASE_URL } from '../lib/api';
 
 const localizer = momentLocalizer(moment);
 
-const MyCalendar = () => {
+const MyCalendar = forwardRef(({ showCreateButton = true }, ref) => {
   const [events, setEvents] = useState([])
   const [showModal, setShowModal] = useState(false)
   const [newEvent, setNewEvent] = useState({
@@ -49,6 +49,11 @@ const MyCalendar = () => {
     setShowModal(false)
     setNewEvent({title:'', start:'', end:''}) // Resets form
   };
+
+  useImperativeHandle(ref, () => ({
+    open: () => setShowModal(true),
+    close: () => handleClose(),
+  }));
 
 
 
@@ -112,9 +117,11 @@ const MyCalendar = () => {
        `}
       </style>
       <div className="calenderMainCont">
-        <Button className='createEventBtn div2 shadow munyun-btn' variant='primary' onClick={handleShow}>
-        Create Event
-      </Button>
+        {showCreateButton && (
+          <Button className='createEventBtn div2 shadow munyun-btn' variant='primary' onClick={handleShow}>
+            Create Event
+          </Button>
+        )}
 
     <Calendar className='calendarCont div4'
     localizer={localizer} 
@@ -182,7 +189,7 @@ const MyCalendar = () => {
 
     </div>
   )
-}
+})
 
   
 

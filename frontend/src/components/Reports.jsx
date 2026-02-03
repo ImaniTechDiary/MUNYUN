@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts'
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
 import * as d3 from 'd3'
 import { API_BASE_URL } from '../lib/api'
@@ -52,9 +52,10 @@ const Reports = () => {
     }
 
     return (
-        <div>
+        <div className="reportChart">
             {/* <h2 className='text-2xl font-bold mb-4'> Expense Report</h2> */}
-            <PieChart width={400} height={400}>
+            <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
                 {/* Main Pie Chart */}
                 <Pie
                 data={data}
@@ -62,7 +63,7 @@ const Reports = () => {
                 nameKey="category"
                 cx="50%"
                 cy="50%"
-                outerRadius={150}
+                outerRadius="80%"
                 // fill="#8884d8"
                 label
                 isAnimationActive={true} // enables animation to fade in smoothly when page loads
@@ -107,6 +108,7 @@ const Reports = () => {
                     }}
                 />
             </PieChart>
+            </ResponsiveContainer>
         </div>
     )
 }
