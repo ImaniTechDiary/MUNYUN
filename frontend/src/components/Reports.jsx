@@ -3,6 +3,7 @@ import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recha
 
 import * as d3 from 'd3'
 import { API_BASE_URL } from '../lib/api'
+import { authFetch } from '../lib/authFetch'
 
 
 
@@ -12,7 +13,7 @@ const Reports = () => {
     const [status, setStatus] = useState('loading')
 
     useEffect(() => {
-        fetch(`${API_BASE_URL}/api/expenses/report`)
+        authFetch(`${API_BASE_URL}/api/expenses/report`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Report request failed: ${response.status}`)

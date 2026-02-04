@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { Container, VStack, Text, SimpleGrid, Box } from '@chakra-ui/react'
 import Navbar from '../components/Navbar'
 import { API_BASE_URL } from '../lib/api'
+import { authFetch } from '../lib/authFetch'
 import './styling/events-page.css'
 
 function EventsPage() {
@@ -11,7 +12,7 @@ function EventsPage() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/events`)
+        const res = await authFetch(`${API_BASE_URL}/api/events`)
         if (!res.ok) {
           throw new Error(`Events request failed: ${res.status}`)
         }

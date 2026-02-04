@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { API_BASE_URL } from '../lib/api';
+import { authFetch } from '../lib/authFetch';
 
 export const useExpenseTracking = create((set) => ({
     expenses: [],
@@ -21,7 +22,7 @@ export const useExpenseTracking = create((set) => ({
             expenseData.image = newExpense.image;
         }
 
-        const res = await fetch(`${API_BASE_URL}/api/expenses/`, {
+        const res = await authFetch(`${API_BASE_URL}/api/expenses/`, {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -37,14 +38,14 @@ export const useExpenseTracking = create((set) => ({
 
     // send request to endpoint and grab the expenses
     fetchExpenses: async () => {
-        const res = await fetch(`${API_BASE_URL}/api/expenses/`) //fetch the endpoint
+        const res = await authFetch(`${API_BASE_URL}/api/expenses/`) //fetch the endpoint
         const data = await res.json() //extract the data
         set({ expenses: data.data}) //returning the data
     },
 
     // delete an expense
     deleteExpense: async (eid) => {
-        const res = await fetch(`${API_BASE_URL}/api/expenses/${eid}`, { //pass the expense id (eid) through the server request to use the delete method to delete the expense
+        const res = await authFetch(`${API_BASE_URL}/api/expenses/${eid}`, { //pass the expense id (eid) through the server request to use the delete method to delete the expense
             method: 'DELETE',
 
         })
@@ -58,7 +59,7 @@ export const useExpenseTracking = create((set) => ({
     },
 
     updateExpense: async (eid, updatedExpense) => {
-        const res = await fetch(`${API_BASE_URL}/api/expenses/${eid}` , {
+        const res = await authFetch(`${API_BASE_URL}/api/expenses/${eid}` , {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -76,7 +77,7 @@ export const useExpenseTracking = create((set) => ({
     
 
     updateExpenseCategory: async (eid, category) => {
-        const res = await fetch(
+        const res = await authFetch(
             `${API_BASE_URL}/api/expenses/update-category/${eid}`,
             {
                 method: 'PUT',
@@ -111,5 +112,3 @@ export const useExpenseTracking = create((set) => ({
 
 
     
-
-

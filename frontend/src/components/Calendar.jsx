@@ -5,6 +5,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import { Modal, Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'; // import axios for API calls
+import { getAuthHeaders } from '../lib/authFetch';
 import { API_BASE_URL } from '../lib/api';
 
 
@@ -26,7 +27,8 @@ const MyCalendar = forwardRef(({ showCreateButton = true }, ref) => {
   useEffect(() => {
   const fetchEvents = async () => {
     try {
-      const res = await axios.get(`${API_BASE_URL}/api/events`);
+      const headers = await getAuthHeaders();
+      const res = await axios.get(`${API_BASE_URL}/api/events`, { headers });
       const formattedEvents = res.data.data.map(event => ({
         ...event,
         start: new Date(event.start), // Ensure it's a Date object
@@ -78,7 +80,8 @@ const MyCalendar = forwardRef(({ showCreateButton = true }, ref) => {
     }
 
     try {
-      const res = await axios.post(`${API_BASE_URL}/api/events`, event)
+      const headers = await getAuthHeaders();
+      const res = await axios.post(`${API_BASE_URL}/api/events`, event, { headers })
       setEvents([...events, res.data.data]) // Update state with new event
     } catch (error) {
       console.error('Error adding event:', error)

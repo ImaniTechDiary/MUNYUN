@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage'
 import CreatePage from './pages/CreatePage'
 import ExpensePage from './pages/ExpensePage'
 import CategorizeExpenses from './pages/CategorizeExpenses'
+import EventsPage from './pages/EventsPage'
+import BudgetPage from './pages/BudgetPage'
 
 // STYLING
 import '../src/pages/styling/main.css'
@@ -26,6 +28,8 @@ function App(addNewCategory) {
         <Route path='/expenses/view-expenses' element={<ExpensePage />} />
         <Route path='/expenses/categorize' element={<CategorizeExpenses />}/>
         <Route path='/expenses/create' element={<CreatePage onExpenseCreate={addNewCategory}/>} />
+        <Route path='/events' element={<EventsPage />} />
+        <Route path='/budget' element={<BudgetPage />} />
       </Routes>
       
   </Box>

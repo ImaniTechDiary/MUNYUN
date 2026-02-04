@@ -1,6 +1,7 @@
 import { Container, Flex, Text, Button, HStack, useColorMode } from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext.jsx'
 
 import { PlusSquareIcon } from '@chakra-ui/icons'
 import { IoMoon } from 'react-icons/io5'
@@ -14,6 +15,7 @@ import PinkFlower from '../images/3d-Pink-Flower.png'
 
 function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode() 
+  const { user, signIn, signOut } = useAuth()
 
   return (
     <div className='navbar'>
@@ -55,13 +57,25 @@ function Navbar() {
             </div>
             <div className="flowerCont">
               <img src={PinkFlower} className='flower'/>
-              <Link href="link.html" className="link">Budget</Link>
+              <Link to={'/budget'} className="link">Budget</Link>
             </div>
             <div className="flowerCont">
               <img src={PinkFlower} className='flower'/>
-              <Link href="link.html" className="link">Click link</Link>
+              <Link to={'/events'} className="link">View Events</Link>
             </div>
             
+          </HStack>
+
+          <HStack className="authControls">
+            {user ? (
+              <Button className="authBtn" size="sm" onClick={signOut}>
+                Sign out
+              </Button>
+            ) : (
+              <Button className="authBtn" size="sm" onClick={signIn}>
+                Sign in
+              </Button>
+            )}
           </HStack>
 
         </Flex>

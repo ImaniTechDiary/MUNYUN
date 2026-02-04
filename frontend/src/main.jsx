@@ -4,6 +4,7 @@ import App from './App.jsx';
 import { ChakraProvider } from '@chakra-ui/react'
 import { BrowserRouter } from 'react-router-dom';
 import './index.css'
+import { AuthProvider } from './context/AuthContext.jsx'
 
 
 
@@ -15,10 +16,11 @@ import './index.css'
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
     <BrowserRouter>
-        <ChakraProvider>
-          <App />
-        </ChakraProvider>
+        <AuthProvider>
+          <ChakraProvider>
+            <App />
+          </ChakraProvider>
+        </AuthProvider>
     </BrowserRouter>
   // </React.StrictMode>
 );
-

@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Emilys+Candy&display=swap');
+
+.budgetPage {
+  background-color: #f7d6e7;
+  min-height: 100vh;
+}
+
+.budgetForm {
+  width: 100%;
+  background-color: #ffc0cb;
+  border: 2px solid #ff69b4;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 2px 6px 5px 3px rgba(212, 93, 196, 0.25);
+  display: grid;
+  gap: 12px;
+}
+
+.budgetFormRow {
+  display: grid;
+  gap: 6px;
+}
+
+.budgetLabel {
+  font-family: "Emilys Candy", serif;
+  letter-spacing: 1px;
+  color: #813e8e;
+  font-weight: 600;
+}
+
+.budgetSection {
+  width: 100%;
+  background-color: #ffe4ee;
+  border: 2px solid #ff69b4;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 2px 6px 5px 3px rgba(212, 93, 196, 0.25);
+}
+
+.budgetSectionTitle {
+  font-family: "Emilys Candy", serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #813e8e;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.budgetCard {
+  background-color: #ffc0cb;
+  border: 2px solid #ff69b4;
+  border-radius: 14px;
+  padding: 14px;
+  text-align: center;
+}
+
+.budgetCardTitle {
+  font-weight: 700;
+  color: #813e8e;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.budgetCardValue {
+  color: #bb3497;
+  font-weight: 700;
+}
+
+.budgetList {
+  display: grid;
+  gap: 8px;
+}
+
+.budgetRow {
+  display: grid;
+  grid-template-columns: 120px 140px 160px minmax(0, 1fr);
+  gap: 8px;
+  background-color: #ffc0cb;
+  border: 1px solid rgba(255, 105, 180, 0.5);
+  border-radius: 12px;
+  padding: 10px 12px;
+  color: #813e8e;
+  font-weight: 600;
+}
+
+.budgetType {
+  text-transform: uppercase;
+}
+
+.budgetAmount {
+  color: #ff69b4;
+}
+
+.budgetEmpty {
+  text-align: center;
+  color: #813e8e;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+  .budgetRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

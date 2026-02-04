@@ -43,6 +43,21 @@
     background-color: #f7d6e7;
     padding-right: 20px;
 }
+    .authControls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 8px;
+    }
+    .authBtn {
+        background-image: url('/images/DarkPinkFlowersBg.png');
+        background-size: cover;
+        background-position: center;
+        color: #fff !important;
+        border: 2px solid #ff69b4 !important;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
     .mainFlowerDiv {
         overflow: hidden;
     }
@@ -50,6 +65,7 @@
     .flowerCont {
         position: relative;
         overflow: hidden;
+        cursor: pointer;
     }
      /* spin the flower */
     .flower {
@@ -58,6 +74,7 @@
         animation: spin 10s linear infinite;
         /* Slow spinning */
         transition: opacity 0.5s ease-in-out;
+        pointer-events: none;
     }
     @keyframes spin {
         from {
@@ -75,17 +92,20 @@
     }
     .link {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         opacity: 0;
         transition: opacity 0.5s ease-in-out;
         font-size: 13px;
         font-weight: bold;
         color: #ff69b4;
         text-align: center;
+        z-index: 1;
         /* Pretty pink */
         text-decoration: none;
+        pointer-events: auto;
     }
 
     /* show the link when flower fades out */
