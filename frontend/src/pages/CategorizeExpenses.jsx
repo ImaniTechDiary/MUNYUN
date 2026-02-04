@@ -54,6 +54,14 @@ function CategorizedExpenses() {
     setMonths(grouped);
   }, [expenses]);
 
+  const sortedMonths = Object.keys(months).sort((a, b) => {
+    if (a === 'Unknown Date') return 1;
+    if (b === 'Unknown Date') return -1;
+    const aDate = new Date(a);
+    const bDate = new Date(b);
+    return bDate - aDate;
+  });
+
 
   const handleDragEnd = async (result) => {
   const { source, destination } = result;
@@ -140,52 +148,61 @@ function CategorizedExpenses() {
         
 
           <DragDropContext onDragEnd={handleDragEnd}>
-            {Object.keys(months).map((month) => (
-              <Box key={month} className='monthBox' w="100%" p={4} borderRadius="md" boxShadow="md">
-                <Heading className='monthHeading' size="md" mb={4}>
-                  {month}
-                </Heading>
-                <VStack align="stretch" spacing={4}>
-                  {Object.keys(months[month]).map((category, catIdx) => (
-                    <Box key={`${month}-${category}`} className='categoryBox' w="100%" bg={catIdx % 2 === 0 ? 'pink.200' : 'pink.200'} p={4} borderRadius="md" boxShadow="md">
-                      <Heading 
-                        className='categoryHeading'
-                        size="sm" 
-                        mb={2}>{category.toUpperCase()}
-                      </Heading>
-                      <Droppable droppableId={`${month}__${category}`}>
-                        {(provided) => (
-                          <Table ref={provided.innerRef} {...provided.droppableProps} size="sm" variant="striped">
-                            <Thead>
-                              <Tr>
-                                <Th className='subTitle'>Name</Th>
-                                <Th className='subTitle'>Suggested</Th>
-                                <Th className='subTitle'>Price</Th>
-                              </Tr>
-                            </Thead>
-                            <Tbody>
-                              {months[month][category].map((expense, index) => (
-                                <Draggable key={expense._id} draggableId={expense._id} index={index}>
-                                  {(provided) => (
-                                    <Tr ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                      <Td className='expenseNameCell'>{expense.name}</Td>
-                                      <Td>
-                                        Suggested • {expense.aiMeta?.confidence || 0}% confidence
-                                      </Td>
-                                      <Td className='expensePriceCell'>${expense.price}</Td>
-                                    </Tr>
-                                  )}
-                                </Draggable>
-                              ))}
-                              {provided.placeholder}
-                            </Tbody>
-                          </Table>
-                        )}
-                      </Droppable>
-                    </Box>
-                  ))}
-                </VStack>
-              </Box>
+            {sortedMonths.map((month) => (
+              <details key={month} className='monthFolder' open>
+                <summary className='monthSummary'>
+                  <span className='monthTitle'>{month}</span>
+                  <span className='monthToggleHint monthToggleHint--open' aria-hidden="true">Close Folder</span>
+                  <span className='monthToggleHint monthToggleHint--closed' aria-hidden="true">Open Folder</span>
+                </summary>
+                <Box className='monthBox' w="100%" p={4} borderRadius="md" boxShadow="md">
+                  <VStack align="stretch" spacing={4}>
+                    {Object.keys(months[month]).map((category, catIdx) => (
+                      <Box key={`${month}-${category}`} className='categoryBox' w="100%" bg={catIdx % 2 === 0 ? 'pink.200' : 'pink.200'} p={4} borderRadius="md" boxShadow="md">
+                        <Heading 
+                          className='categoryHeading'
+                          size="sm" 
+                          mb={2}
+                        >
+                          {category.toUpperCase()}
+                          {category === 'uncategorized' && (
+                            <span className='uncategorizedBadge'>Uncategorized</span>
+                          )}
+                        </Heading>
+                        <Droppable droppableId={`${month}__${category}`}>
+                          {(provided) => (
+                            <Table ref={provided.innerRef} {...provided.droppableProps} size="sm" variant="striped">
+                              <Thead>
+                                <Tr>
+                                  <Th className='subTitle'>Name</Th>
+                                  <Th className='subTitle'>Suggested</Th>
+                                  <Th className='subTitle'>Price</Th>
+                                </Tr>
+                              </Thead>
+                              <Tbody>
+                                {months[month][category].map((expense, index) => (
+                                  <Draggable key={expense._id} draggableId={expense._id} index={index}>
+                                    {(provided) => (
+                                      <Tr ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                        <Td className='expenseNameCell'>{expense.name}</Td>
+                                        <Td>
+                                          Suggested • {expense.aiMeta?.confidence || 0}% confidence
+                                        </Td>
+                                        <Td className='expensePriceCell'>${expense.price}</Td>
+                                      </Tr>
+                                    )}
+                                  </Draggable>
+                                ))}
+                                {provided.placeholder}
+                              </Tbody>
+                            </Table>
+                          )}
+                        </Droppable>
+                      </Box>
+                    ))}
+                  </VStack>
+                </Box>
+              </details>
             ))}
           </DragDropContext>
         </VStack>

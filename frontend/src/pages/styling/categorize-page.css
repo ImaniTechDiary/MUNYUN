@@ -42,6 +42,53 @@
     max-width: 100%;
 }
 
+.monthFolder {
+    border: 2px solid #ff69b4;
+    border-radius: 18px;
+    background-color: #ffe4ee;
+    box-shadow: 2px 6px 5px 3px rgba(212, 93, 196, 0.25);
+    overflow: hidden;
+    width: 100%;
+}
+
+.monthSummary {
+    list-style: none;
+    cursor: pointer;
+    padding: 12px 16px;
+    background-image: url('/images/DarkPinkFlowersBg.png');
+    background-size: cover;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.monthSummary::-webkit-details-marker {
+    display: none;
+}
+
+.monthTitle {
+    font-family: "Emilys Candy", serif;
+}
+
+.monthToggleHint {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.85;
+}
+
+.monthFolder[open] .monthToggleHint--closed {
+    display: none;
+}
+
+.monthFolder:not([open]) .monthToggleHint--open {
+    display: none;
+}
+
 .monthBox {
     background-color: #f7d6e7;
 }
@@ -53,6 +100,17 @@
     text-transform: uppercase;
     color: #813e8e;
     text-align: center;
+}
+
+.uncategorizedBadge {
+    margin-left: 10px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background-color: #ff69b4;
+    color: #fff;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 .expenseNameCell, .expensePriceCell {
     background-color: #f7d1d7;
