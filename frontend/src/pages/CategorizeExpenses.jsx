@@ -31,6 +31,9 @@ function CategorizedExpenses() {
   const [isAmountSet, setIsAmountSet] = useState(() => JSON.parse(localStorage.getItem('isAmountSet')) || false);
   const [additionalAmount, setAdditionalAmount] = useState('');
   const [months, setMonths] = useState({});
+  const [monthFilter, setMonthFilter] = useState('All');
+  const [categoryFilter, setCategoryFilter] = useState('All');
+  const [searchTerm, setSearchTerm] = useState('');
   const toast = useToast();
 
   useEffect(() => {
@@ -61,6 +64,27 @@ function CategorizedExpenses() {
     const bDate = new Date(b);
     return bDate - aDate;
   });
+
+  const allCategories = Object.keys(
+    expenses.reduce((acc, expense) => {
+      const category = expense.category || 'uncategorized';
+      acc[category] = true;
+      return acc;
+    }, {})
+  ).sort((a, b) => a.localeCompare(b));
+
+  const filteredMonths = sortedMonths.filter((month) => {
+    return monthFilter === 'All' ? true : month === monthFilter;
+  });
+
+  const expenseMatchesSearch = (expense) => {
+    if (!searchTerm.trim()) return true;
+    const term = searchTerm.toLowerCase();
+    return (
+      expense.name?.toLowerCase().includes(term) ||
+      expense.category?.toLowerCase().includes(term)
+    );
+  };
 
 
   const handleDragEnd = async (result) => {
@@ -145,10 +169,51 @@ function CategorizedExpenses() {
           // spacing={4} 
           mt={4}
         >
-        
+          <Box className="filterBar">
+            <Box className="filterGroup">
+              <label className="filterLabel">Month</label>
+              <select
+                className="filterSelect"
+                value={monthFilter}
+                onChange={(e) => setMonthFilter(e.target.value)}
+              >
+                <option value="All">All</option>
+                {sortedMonths.map((month) => (
+                  <option key={month} value={month}>
+                    {month}
+                  </option>
+                ))}
+              </select>
+            </Box>
+            <Box className="filterGroup">
+              <label className="filterLabel">Category</label>
+              <select
+                className="filterSelect"
+                value={categoryFilter}
+                onChange={(e) => setCategoryFilter(e.target.value)}
+              >
+                <option value="All">All</option>
+                {allCategories.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+              </select>
+            </Box>
+            <Box className="filterGroup filterSearch">
+              <label className="filterLabel">Search</label>
+              <input
+                className="filterInput"
+                type="text"
+                placeholder="Search expenses..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </Box>
+          </Box>
 
           <DragDropContext onDragEnd={handleDragEnd}>
-            {sortedMonths.map((month) => (
+            {filteredMonths.map((month) => (
               <details key={month} className='monthFolder' open>
                 <summary className='monthSummary'>
                   <span className='monthTitle'>{month}</span>
@@ -157,7 +222,9 @@ function CategorizedExpenses() {
                 </summary>
                 <Box className='monthBox' w="100%" p={4} borderRadius="md" boxShadow="md">
                   <VStack align="stretch" spacing={4}>
-                    {Object.keys(months[month]).map((category, catIdx) => (
+                    {Object.keys(months[month])
+                      .filter((category) => (categoryFilter === 'All' ? true : category === categoryFilter))
+                      .map((category, catIdx) => (
                       <Box key={`${month}-${category}`} className='categoryBox' w="100%" bg={catIdx % 2 === 0 ? 'pink.200' : 'pink.200'} p={4} borderRadius="md" boxShadow="md">
                         <Heading 
                           className='categoryHeading'
@@ -180,7 +247,9 @@ function CategorizedExpenses() {
                                 </Tr>
                               </Thead>
                               <Tbody>
-                                {months[month][category].map((expense, index) => (
+                                {months[month][category]
+                                  .filter(expenseMatchesSearch)
+                                  .map((expense, index) => (
                                   <Draggable key={expense._id} draggableId={expense._id} index={index}>
                                     {(provided) => (
                                       <Tr ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
