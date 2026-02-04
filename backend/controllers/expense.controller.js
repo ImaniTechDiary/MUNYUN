@@ -17,27 +17,22 @@ export const getExpenses = async (req, res) => {
 
 
 export const createExpense = async (req, res) => {
-    const { category, confidence, source} = await categorizeExpense(
-        req.body.name,
-        req.user._id
-    );
-
-    const expense = await Expense.create({
-        ...req.body,
-        category,
-        aiMeta: {confidence, source}
-    })
-    // const expense = req.body; // user will send this data 
-
-    // if(!expense.name || !expense.price || !expense.image) {
-    //     return res.status(400).json({ success: false, message: "Please provide all fields"})
-    // }
-
-     if(!expense.name || !expense.price) {
+    const { name, price } = req.body;
+    if(!name || !price) {
         return res.status(400).json({ success: false, message: "Please provide all fields"})
     }
 
-    const newExpense = new Expense(expense);
+    const userId = req.user?._id;
+    const { category, confidence, source} = await categorizeExpense(
+        name,
+        userId
+    );
+
+    const newExpense = new Expense({
+        ...req.body,
+        category,
+        aiMeta: {confidence, source}
+    });
 
     try {
         await newExpense.save(); //saves expense to the db
@@ -153,5 +148,4 @@ export const getExpenseReport = async (req, res) => {
     res.status(500).json({ message: 'Failed to generate report' });
   }
 };
-
 

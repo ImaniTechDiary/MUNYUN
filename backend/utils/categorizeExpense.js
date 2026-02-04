@@ -8,11 +8,18 @@ const BASE_RULES = {
   shopping: ['amazon', 'target', 'walmart'],
 };
 
-export const categorizeExpense = async (name, userId) => {
-  const normalized = name.toLowerCase();
+export const categorizeExpense = async (name = '', userId) => {
+  const normalized = String(name || '').toLowerCase();
 
   // 1️- Check learned keywords FIRST
-  const learned = await CategoryLearning.find({ userId });
+  let learned = [];
+  if (userId && typeof CategoryLearning !== 'undefined') {
+    try {
+      learned = await CategoryLearning.find({ userId });
+    } catch (error) {
+      learned = [];
+    }
+  }
 
   for (const entry of learned) {
     if (normalized.includes(entry.keyword)) {
@@ -45,6 +52,7 @@ export const categorizeExpense = async (name, userId) => {
 
 export const learnFromCorrection = async (expense, newCategory, userId) => {
     try {
+        if (typeof categoryLearningModel === 'undefined') return;
         const categoryKeywords = expense.name.toLowerCase().split(' ')
 
         for (const word of categoryKeywords) {
