@@ -6,6 +6,10 @@ const eventSchema = mongoose.Schema(
             type: String,
             required: true,
         },
+        userId: {
+            type: String,
+            index: true
+        },
         start: {
             type: Date,
             required: true,

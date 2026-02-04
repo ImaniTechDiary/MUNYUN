@@ -5,7 +5,11 @@ import mongoose from 'mongoose';
 // GET ALL EVENTS
 export const getEvents = async (req, res) => {
     try {
-        const events = await Event.find({})
+        const userId = req.user?.uid;
+        const query = userId
+            ? { userId }
+            : { $or: [{ userId: { $exists: false } }, { userId: null }, { userId: 'demo' }] };
+        const events = await Event.find(query)
         res.status(200).json({ success: true, data: events })
     }   catch (error){
         console.error('Error fetching events:', error.message)
@@ -23,7 +27,8 @@ export const createEvent = async (req, res) => {
     }
 
     try {
-        const newEvent = new Event({ title, start, end })
+        const userId = req.user?.uid || 'demo';
+        const newEvent = new Event({ title, start, end, userId })
         await newEvent.save()
         res.status(201).json({ success: true, data: newEvent })
     }   catch (error) {
@@ -42,7 +47,11 @@ export const updateEvent = async (req, res) => {
     }
 
     try {
-        const updatedEvent = await Event.findByIdAndUpdate(id, { title, start, end}, { new: true })
+        const userId = req.user?.uid;
+        const query = userId
+            ? { _id: id, userId }
+            : { _id: id, $or: [{ userId: { $exists: false } }, { userId: null }, { userId: 'demo' }] };
+        const updatedEvent = await Event.findOneAndUpdate(query, { title, start, end}, { new: true })
         res.status(200).json({ success: true, data: updatedEvent })
     }   catch (error) {
         res.status(500).json({ success: false, message: 'Server error' })
@@ -59,7 +68,11 @@ export const deleteEvent = async (req, res) => {
     }
 
     try {
-        await Event.findByIdAndDelete(id)
+        const userId = req.user?.uid;
+        const query = userId
+            ? { _id: id, userId }
+            : { _id: id, $or: [{ userId: { $exists: false } }, { userId: null }, { userId: 'demo' }] };
+        await Event.findOneAndDelete(query)
         res.status(200).json({ success: true, message: 'Event deleted successfully'})
     }   catch (error) {
         res.status(500).json({ success: false, message: 'Server error' })

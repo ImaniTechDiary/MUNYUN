@@ -17,6 +17,10 @@ const expenseSchema = new mongoose.Schema({
         type: String,
         default: 'Uncategorized'
     },
+    userId: {
+        type: String,
+        index: true
+    },
     aiMeta: {
         confidence: Number,
         source: String,
@@ -29,4 +33,3 @@ const expenseSchema = new mongoose.Schema({
 const Expense = mongoose.model('Expense', expenseSchema);
 
 export default Expense;
-

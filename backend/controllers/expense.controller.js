@@ -3,11 +3,17 @@ import mongoose from 'mongoose';
 
 
 // UTILS
-import { categorizeExpense } from '../utils/categorizeExpense.js'
+import { categorizeExpense, learnFromCorrection } from '../utils/categorizeExpense.js'
+
+const DEMO_USER_ID = 'demo';
 
 export const getExpenses = async (req, res) => { 
     try {
-        const expenses = await Expense.find({}) //fetching an empty object will find all the expenses in the database
+        const userId = req.user?.uid;
+        const query = userId
+            ? { userId }
+            : { $or: [{ userId: { $exists: false } }, { userId: null }, { userId: DEMO_USER_ID }] };
+        const expenses = await Expense.find(query)
         res.status(200).json({ success: true, data: expenses})
     } catch (error) {
         console.log("error in fetching expenses:", error.message);
@@ -22,7 +28,7 @@ export const createExpense = async (req, res) => {
         return res.status(400).json({ success: false, message: "Please provide all fields"})
     }
 
-    const userId = req.user?._id;
+    const userId = req.user?.uid || DEMO_USER_ID;
     const { category, confidence, source} = await categorizeExpense(
         name,
         userId
@@ -31,7 +37,8 @@ export const createExpense = async (req, res) => {
     const newExpense = new Expense({
         ...req.body,
         category,
-        aiMeta: {confidence, source}
+        aiMeta: {confidence, source},
+        userId
     });
 
     try {
@@ -53,7 +60,11 @@ export const updateExpense = async (req, res) => {
     }
 
     try {
-       const updatedExpense = await Expense.findByIdAndUpdate(id, expense, {new: true});
+       const userId = req.user?.uid;
+       const query = userId
+            ? { _id: id, userId }
+            : { _id: id, $or: [{ userId: { $exists: false } }, { userId: null }, { userId: DEMO_USER_ID }] };
+       const updatedExpense = await Expense.findOneAndUpdate(query, expense, {new: true});
        res.status(200).json({ success: true, data: updatedExpense })
     } catch (error) {
         res.status(500).json({ success: false, message: 'Server error' })
@@ -68,7 +79,11 @@ export const deleteExpense = async (req, res) => {
     }
     
     try {
-        await Expense.findByIdAndDelete(id)
+        const userId = req.user?.uid;
+        const query = userId
+            ? { _id: id, userId }
+            : { _id: id, $or: [{ userId: { $exists: false } }, { userId: null }, { userId: DEMO_USER_ID }] };
+        await Expense.findOneAndDelete(query)
         res.status(200).json({ success: true, message: 'Expense deleted successfully'})
     } catch (error) {
         console.log("error in deleting expense:", error.message);
@@ -95,20 +110,22 @@ export const updateCategory = async (req, res) => {
     const { category: updatedCategory } = req.body;
 
     // 1️- Get the existing expense FIRST
-    const expense = await Expense.findById(req.params.id);
+    const userId = req.user?.uid;
+    const query = userId
+        ? { _id: req.params.id, userId }
+        : { _id: req.params.id, $or: [{ userId: { $exists: false } }, { userId: null }, { userId: DEMO_USER_ID }] };
+    const expense = await Expense.findOne(query);
 
     if (!expense) {
       return res.status(404).json({ error: 'Expense not found' });
     }
 
-    const userId = req.user?._id || 'default-user' // placeholder until auth is set up
     // 2️- Only learn if category actually changed
     if (updatedCategory && updatedCategory !== expense.category) {
       await learnFromCorrection(
         expense,
         updatedCategory,
-        'default-user'
-        // 'req.user._id '  // or a placeholder if auth isn't ready yet
+        userId || DEMO_USER_ID
       );
     }
 
@@ -128,7 +145,12 @@ export const updateCategory = async (req, res) => {
 
 export const getExpenseReport = async (req, res) => {
    try {
+    const userId = req.user?.uid;
+    const matchStage = userId
+        ? { userId }
+        : { $or: [{ userId: { $exists: false } }, { userId: null }, { userId: DEMO_USER_ID }] };
     const reportData = await Expense.aggregate([
+      { $match: matchStage },
       {
         $group: {
           _id: "$category",
@@ -148,4 +170,3 @@ export const getExpenseReport = async (req, res) => {
     res.status(500).json({ message: 'Failed to generate report' });
   }
 };
-
