@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {
   Container,
   VStack,
+  Heading,
   Text,
   HStack,
   IconButton,
@@ -86,18 +87,18 @@ function ExpensePage() {
       <Navbar />
       <Container  maxW='container.xl' py={12}>
         <VStack spacing={8}>
-        <Text
-          className='pageTitle'
-          fontSize={'50'}
-          fontWeight={'bold'}
-          bgGradient={'linear(to-r, cyan.400, blue-500'}
-          bgClip={'text'}
-          textAlign={'center'}
-          color={'#f071b3'}
-          textTransform='uppercase'
+        <Heading
+          className='viewExpensesPageTitle'
+          // fontSize={'50'}
+          // fontWeight={'bold'}
+          // bgGradient={'linear(to-r, cyan.400, blue-500'}
+          // bgClip={'text'}
+          // textAlign={'center'}
+          // color={'#f071b3'}
+          // textTransform='uppercase'
         >
           View All Expenses
-        </Text>
+        </Heading>
 
         <div className="expensesTableWrap">
           <table className="expensesTable">
