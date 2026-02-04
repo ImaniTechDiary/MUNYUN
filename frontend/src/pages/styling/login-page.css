@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Emilys+Candy&display=swap');
+
+.loginPage {
+  min-height: 100vh;
+  background-color: #f7d6e7;
+  display: flex;
+  align-items: center;
+}
+
+.loginCard {
+  width: 100%;
+  background-color: #ffc0cb;
+  border: 2px solid #ff69b4;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 2px 6px 5px 3px rgba(212, 93, 196, 0.35);
+  text-align: center;
+}
+
+.loginHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+.loginLogo {
+  width: 180px;
+  height: auto;
+}
+
+.loginDemoBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 2px dashed #ff69b4;
+  color: #813e8e;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  background: transparent;
+}
+
+.loginTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: "Emilys Candy", serif;
+  font-size: 2rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #813e8e;
+}
+
+.loginTitleLogo {
+  width: 140px;
+  height: auto;
+}
+
+.loginSubtitle {
+  color: #bb3497;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.loginBtn {
+  width: min(360px, 90%);
+}
+
+.loginHint {
+  font-size: 0.85rem;
+  color: #813e8e;
+  opacity: 0.85;
+}
