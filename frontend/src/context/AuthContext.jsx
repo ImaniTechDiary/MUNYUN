@@ -6,6 +6,9 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [demoMode, setDemoMode] = useState(
+    () => localStorage.getItem('demoMode') === 'true'
+  );
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,8 +27,18 @@ export const AuthProvider = ({ children }) => {
     await signOut(auth);
   };
 
+  const enableDemo = () => {
+    localStorage.setItem('demoMode', 'true');
+    setDemoMode(true);
+  };
+
+  const disableDemo = () => {
+    localStorage.removeItem('demoMode');
+    setDemoMode(false);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signOut: signOutUser }}>
+    <AuthContext.Provider value={{ user, loading, signIn, signOut: signOutUser, demoMode, enableDemo, disableDemo }}>
       {children}
     </AuthContext.Provider>
   );

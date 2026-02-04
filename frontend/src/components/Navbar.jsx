@@ -15,7 +15,7 @@ import PinkFlower from '../images/3d-Pink-Flower.png'
 
 function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode() 
-  const { user, signIn, signOut } = useAuth()
+  const { user, signIn, signOut, demoMode, disableDemo } = useAuth()
 
   return (
     <div className='navbar'>
@@ -70,6 +70,10 @@ function Navbar() {
             {user ? (
               <Button className="authBtn" size="sm" onClick={signOut}>
                 Sign out
+              </Button>
+            ) : demoMode ? (
+              <Button className="authBtn" size="sm" onClick={disableDemo}>
+                Exit Demo
               </Button>
             ) : (
               <Button className="authBtn" size="sm" onClick={signIn}>
