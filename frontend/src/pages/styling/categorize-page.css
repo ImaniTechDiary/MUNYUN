@@ -41,6 +41,19 @@
     width: 100%;
     max-width: 100%;
 }
+
+.monthBox {
+    background-color: #f7d6e7;
+}
+
+.monthHeading {
+    font-family: "Emilys Candy", serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #813e8e;
+    text-align: center;
+}
 .expenseNameCell, .expensePriceCell {
     background-color: #f7d1d7;
 }

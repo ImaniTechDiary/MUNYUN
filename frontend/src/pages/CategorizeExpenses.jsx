@@ -30,7 +30,7 @@ function CategorizedExpenses() {
   const [remainingAmount, setRemainingAmount] = useState(() => Number(localStorage.getItem('remainingAmount')) || 0);
   const [isAmountSet, setIsAmountSet] = useState(() => JSON.parse(localStorage.getItem('isAmountSet')) || false);
   const [additionalAmount, setAdditionalAmount] = useState('');
-  const [categories, setCategories] = useState({ uncategorized: expenses || [] });
+  const [months, setMonths] = useState({});
   const toast = useToast();
 
   useEffect(() => {
@@ -38,12 +38,20 @@ function CategorizedExpenses() {
   }, [fetchExpenses]);
 
   useEffect(() => {
-    const categorizedExpenses = expenses.reduce((acc, expense) => {
+    const grouped = expenses.reduce((acc, expense) => {
+      const date = expense.createdAt ? new Date(expense.createdAt) : null;
+      const monthKey = date
+        ? date.toLocaleString('default', { month: 'long', year: 'numeric' })
+        : 'Unknown Date';
       const category = expense.category || 'uncategorized';
-      acc[category] = acc[category] ? [...acc[category], expense] : [expense];
+
+      if (!acc[monthKey]) acc[monthKey] = {};
+      acc[monthKey][category] = acc[monthKey][category]
+        ? [...acc[monthKey][category], expense]
+        : [expense];
       return acc;
-    }, { uncategorized: [] });
-    setCategories(categorizedExpenses);
+    }, {});
+    setMonths(grouped);
   }, [expenses]);
 
 
@@ -51,32 +59,36 @@ function CategorizedExpenses() {
   const { source, destination } = result;
   if (!destination) return;
 
-  const sourceCategory = source.droppableId;
-  const destCategory = destination.droppableId;
+  const [sourceMonth, sourceCategory] = source.droppableId.split('__');
+  const [destMonth, destCategory] = destination.droppableId.split('__');
 
   if (
+    sourceMonth === destMonth &&
     sourceCategory === destCategory &&
     source.index === destination.index
   ) {
     return;
   }
 
-  const updatedCategories = { ...categories };
+  // prevent dragging between months (date-based folders)
+  if (sourceMonth !== destMonth) return;
 
-  const sourceItems = Array.from(updatedCategories[sourceCategory]);
+  const updatedMonths = { ...months };
+
+  const sourceItems = Array.from(updatedMonths[sourceMonth][sourceCategory] || []);
   const [movedItem] = sourceItems.splice(source.index, 1);
-  updatedCategories[sourceCategory] = sourceItems;
+  updatedMonths[sourceMonth][sourceCategory] = sourceItems;
 
-  const destItems = Array.from(updatedCategories[destCategory] || []);
+  const destItems = Array.from(updatedMonths[destMonth][destCategory] || []);
   destItems.splice(destination.index, 0, {
     ...movedItem,
     category: destCategory,
   });
 
-  updatedCategories[destCategory] = destItems;
+  updatedMonths[destMonth][destCategory] = destItems;
 
   // Optimistic UI
-  setCategories(updatedCategories);
+  setMonths(updatedMonths);
 
   // Persist to backend + Zustand
   const resultUpdate = await updateExpenseCategory(
@@ -86,7 +98,7 @@ function CategorizedExpenses() {
 
   if (!resultUpdate?.success) {
     console.error('Failed to update category');
-    setCategories(categories); // rollback
+    setMonths(months); // rollback
   }
 };
 
@@ -128,43 +140,51 @@ function CategorizedExpenses() {
         
 
           <DragDropContext onDragEnd={handleDragEnd}>
-            {Object.keys(categories).map((category, catIdx) => (
-              <Box key={category} className='categoryBox' w="100%" bg={catIdx % 2 === 0 ? 'pink.200' : 'pink.200'} p={4} borderRadius="md" boxShadow="md">
-                <Heading 
-                  className='categoryHeading'
-                  size="sm" 
-                  mb={2}>{category.toUpperCase()}
+            {Object.keys(months).map((month) => (
+              <Box key={month} className='monthBox' w="100%" p={4} borderRadius="md" boxShadow="md">
+                <Heading className='monthHeading' size="md" mb={4}>
+                  {month}
                 </Heading>
-                <Droppable droppableId={category}>
-                  {(provided) => (
-                    <Table ref={provided.innerRef} {...provided.droppableProps} size="sm" variant="striped">
-                      <Thead>
-                        <Tr>
-                          <Th className='subTitle'>Name</Th>
-                          <Th className='subTitle'>Price</Th>
-                        </Tr>
-                      </Thead>
-                      <Tbody>
-                        {categories[category].map((expense, index) => (
-                          <Draggable key={expense._id} draggableId={expense._id} index={index}>
-                            {(provided) => (
-                              <Tr ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                <Td className='expenseNameCell'>{expense.name}</Td>
-
-                                <Td>
-                                  Suggested • {expense.aiMeta?.confidence || 0}% confidence
-                                </Td>
-
-                                <Td className='expensePriceCell'>${expense.price}</Td>
+                <VStack align="stretch" spacing={4}>
+                  {Object.keys(months[month]).map((category, catIdx) => (
+                    <Box key={`${month}-${category}`} className='categoryBox' w="100%" bg={catIdx % 2 === 0 ? 'pink.200' : 'pink.200'} p={4} borderRadius="md" boxShadow="md">
+                      <Heading 
+                        className='categoryHeading'
+                        size="sm" 
+                        mb={2}>{category.toUpperCase()}
+                      </Heading>
+                      <Droppable droppableId={`${month}__${category}`}>
+                        {(provided) => (
+                          <Table ref={provided.innerRef} {...provided.droppableProps} size="sm" variant="striped">
+                            <Thead>
+                              <Tr>
+                                <Th className='subTitle'>Name</Th>
+                                <Th className='subTitle'>Suggested</Th>
+                                <Th className='subTitle'>Price</Th>
                               </Tr>
-                            )}
-                          </Draggable>
-                        ))}
-                        {provided.placeholder}
-                      </Tbody>
-                    </Table>
-                  )}
-                </Droppable>
+                            </Thead>
+                            <Tbody>
+                              {months[month][category].map((expense, index) => (
+                                <Draggable key={expense._id} draggableId={expense._id} index={index}>
+                                  {(provided) => (
+                                    <Tr ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                      <Td className='expenseNameCell'>{expense.name}</Td>
+                                      <Td>
+                                        Suggested • {expense.aiMeta?.confidence || 0}% confidence
+                                      </Td>
+                                      <Td className='expensePriceCell'>${expense.price}</Td>
+                                    </Tr>
+                                  )}
+                                </Draggable>
+                              ))}
+                              {provided.placeholder}
+                            </Tbody>
+                          </Table>
+                        )}
+                      </Droppable>
+                    </Box>
+                  ))}
+                </VStack>
               </Box>
             ))}
           </DragDropContext>
