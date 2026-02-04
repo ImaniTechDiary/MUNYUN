@@ -31,6 +31,7 @@
 
 .categoryContainer {
     max-width: 1200px;
+    margin: 0 auto;
 }
 
 .subTitle {
@@ -150,6 +151,27 @@
 
 .filterSearch {
     grid-column: span 1;
+}
+
+.monthGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1799px) {
+    .monthGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media screen and (min-width: 1800px) {
+    .monthGrid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 }
 
 @media screen and (max-width: 768px) {

@@ -213,6 +213,7 @@ function CategorizedExpenses() {
           </Box>
 
           <DragDropContext onDragEnd={handleDragEnd}>
+            <div className="monthGrid">
             {filteredMonths.map((month) => (
               <details key={month} className='monthFolder' open>
                 <summary className='monthSummary'>
@@ -269,6 +270,7 @@ function CategorizedExpenses() {
                 </Box>
               </details>
             ))}
+            </div>
           </DragDropContext>
         </VStack>
       </Container>
