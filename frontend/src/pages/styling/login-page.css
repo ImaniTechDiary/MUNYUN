@@ -32,9 +32,9 @@
 
 .loginPageLogo {
   position: absolute;
-  top: 20px;
-  left: 24px;
-  width: 160px;
+  top: 28px;
+  left: 32px;
+  width: 200px;
   height: auto;
 }
 
@@ -51,6 +51,9 @@
   letter-spacing: 1px;
   text-decoration: none;
   background: rgba(255, 255, 255, 0.08);
+}
+.loginDemoBtn:hover {
+  background-color: #ff69b4;
 }
 
 .loginTitle {
