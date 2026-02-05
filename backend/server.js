@@ -32,6 +32,7 @@ const defaultOrigins = [
     'https://munyun-frontend.onrender.com',
     'https://munyun.netlify.app',
     'https://munyun.pages.dev',
+    'https://892c6cfb.munyun.pages.dev'
 ];
 const envOrigins = process.env.FRONTEND_ORIGINS
     ? process.env.FRONTEND_ORIGINS.split(',').map((origin) => origin.trim()).filter(Boolean)
