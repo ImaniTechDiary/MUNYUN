@@ -12,13 +12,14 @@ function LoginPage() {
     <div className="loginPage">
       <Container maxW="container.md" py={16}>
         <VStack spacing={6} className="loginCard">
+          <img src={homeLogo} alt="Munyun" className="loginPageLogo" />
           <div className="loginHeader">
             <Link className="loginDemoBtn" to="/" onClick={enableDemo}>
               Try Demo
             </Link>
           </div>
           <div className="loginTitle">
-            Welcome to <img src={homeLogo} alt="Munyun" className="loginTitleLogo" />
+            Welcome
           </div>
           <Text className="loginSubtitle">
             Sign in with Google to keep your budgets and expenses private.

@@ -3,18 +3,18 @@
 .loginPage {
   min-height: 100vh;
   background-color: #f7d6e7;
-  background-image: url('/images/DarkPinkFlowersBg.png');
-  background-size: 1100px auto;
-  background-position: center;
-  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   padding: 40px 0;
+  position: relative;
 }
 
 .loginCard {
   width: 100%;
-  background-color: #ffc0cb;
+  background-image: url('/images/DarkPinkFlowersBg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border: 2px solid #ff69b4;
   border-radius: 20px;
   padding: 32px;
@@ -25,13 +25,16 @@
 .loginHeader {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 16px;
   width: 100%;
 }
 
-.loginLogo {
-  width: 180px;
+.loginPageLogo {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  width: 160px;
   height: auto;
 }
 
@@ -41,13 +44,13 @@
   justify-content: center;
   padding: 8px 14px;
   border-radius: 999px;
-  border: 2px dashed #ff69b4;
-  color: #813e8e;
+  border: 2px dashed #ffd6ea;
+  color: #fff7fb;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
   text-decoration: none;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .loginTitle {
@@ -59,16 +62,23 @@
   font-size: 2rem;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #813e8e;
+  color: #ffe6f2;
 }
 
-.loginTitleLogo {
-  width: 140px;
-  height: auto;
+@media screen and (max-width: 768px) {
+  .loginHeader {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .loginPageLogo {
+    width: 130px;
+    top: 16px;
+    left: 16px;
+  }
 }
 
 .loginSubtitle {
-  color: #bb3497;
+  color: #fff7fb;
   font-weight: 600;
   letter-spacing: 0.5px;
 }
@@ -79,6 +89,6 @@
 
 .loginHint {
   font-size: 0.85rem;
-  color: #813e8e;
+  color: #fff7fb;
   opacity: 0.85;
 }
