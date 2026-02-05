@@ -88,6 +88,12 @@
 
 .loginBtn {
   width: min(360px, 90%);
+  background: transparent !important;
+  border: 2px solid #ffd6ea !important;
+  color: #fff7fb !important;
+}
+.loginBtn:hover {
+  background-color: #ff69b4 !important;
 }
 
 .loginHint {
