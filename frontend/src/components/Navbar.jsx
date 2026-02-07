@@ -59,10 +59,12 @@ function Navbar() {
               <img src={PinkFlower} className='flower'/>
               <Link to={'/budget'} className="link">Budget</Link>
             </div>
-            <div className="flowerCont">
-              <img src={PinkFlower} className='flower'/>
-              <Link to={'/events'} className="link">View Events</Link>
-            </div>
+            {demoMode && (
+              <div className="flowerCont">
+                <img src={PinkFlower} className='flower'/>
+                <button className="link linkButton" onClick={disableDemo}>Exit Demo</button>
+              </div>
+            )}
             
           </HStack>
 
@@ -70,10 +72,6 @@ function Navbar() {
             {user ? (
               <Button className="authBtn" size="sm" onClick={signOut}>
                 Sign out
-              </Button>
-            ) : demoMode ? (
-              <Button className="authBtn" size="sm" onClick={disableDemo}>
-                Exit Demo
               </Button>
             ) : (
               <Button className="authBtn" size="sm" onClick={signIn}>
