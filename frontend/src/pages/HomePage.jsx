@@ -4,6 +4,7 @@ import { Box } from '@chakra-ui/react'
 import './styling/home.css'
 import PinkFlower from '../images/3d-Pink-Flower.png'
 // import '../index.css'
+import { Link } from 'react-router-dom'
 
 // COMPONENTS
 import Navbar from '../components/Navbar'
@@ -31,6 +32,9 @@ function HomePage() {
         <button className='createEventBtn div2 shadow munyun-btn' onClick={() => calendarRef.current?.open()}>
           Create Event
         </button>
+        <Link to='/events' className='viewEventsBtn munyun-btn'>
+          View Events
+        </Link>
       </div>
 
       <div className='calendar'>
