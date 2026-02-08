@@ -154,7 +154,7 @@ function CategorizedExpenses() {
   return (
     <div className='categorizePage'>
       <Navbar />
-      <Container className='categoryContainer' >
+      <Container className='categoryContainer' maxW="100%" w="100%">
         <Heading 
           className='categorizePageTitle'
           // mt={4}
@@ -162,6 +162,7 @@ function CategorizedExpenses() {
           Categorize Expenses
         </Heading>
         <VStack 
+          className='filterMainDiv'
           // align='stretch'
           // mt={6}
           // spacing={{ base: 4, md: 6, xl: 8}}
