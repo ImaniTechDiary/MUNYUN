@@ -2,7 +2,7 @@
 
 .loginPage {
   min-height: 100vh;
-  background-color: #f7d6e7;
+  background-color: transparent;
   display: flex;
   align-items: center;
   padding: 40px 0;

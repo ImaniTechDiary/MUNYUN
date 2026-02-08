@@ -45,6 +45,16 @@
     text-transform: uppercase;
 }
 
+.authBtn.signInBtn {
+    background: transparent !important;
+    border: 0 !important;
+    color: #ff69b4 !important;
+    padding-inline: 6px !important;
+    padding-block: 2px !important;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
 .mainFlowerDiv {
     overflow: hidden;
 }
