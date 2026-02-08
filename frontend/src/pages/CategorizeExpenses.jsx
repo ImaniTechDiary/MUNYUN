@@ -215,8 +215,8 @@ function CategorizedExpenses() {
 
           <DragDropContext onDragEnd={handleDragEnd}>
             <div className="monthGrid">
-            {filteredMonths.map((month) => (
-              <details key={month} className='monthFolder' open>
+            {filteredMonths.map((month, monthIdx) => (
+              <details key={month} className='monthFolder' open={monthIdx === 0}>
                 <summary className='monthSummary'>
                   <span className='monthTitle'>{month}</span>
                   <span className='monthToggleHint monthToggleHint--open' aria-hidden="true">Close Folder</span>

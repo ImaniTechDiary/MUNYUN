@@ -53,6 +53,12 @@
     /* width: 1440px; */
 }
 
+.monthFolder:not([open]) {
+    background-color: transparent;
+    box-shadow: none;
+    border-color: transparent;
+}
+
 .monthSummary {
     list-style: none;
     cursor: pointer;
