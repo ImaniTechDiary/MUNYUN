@@ -6,8 +6,9 @@
 }
 
 .homeMainCont {
-    background-color: #f7d6e7;
+    background-color: transparent;
     display: grid;
+    position: relative;
     min-height: 100vh;
     width: 100%;
     grid-template-columns: minmax(0, 1fr);
@@ -23,6 +24,21 @@
     padding: 16px;
 }
 
+.homeBgVideo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.homeMainCont > :not(.homeBgVideo) {
+    position: relative;
+    z-index: 1;
+}
+
 .homePage {
     display: flex;
     flex-direction: column;
@@ -32,6 +48,7 @@
 
 .homeLogo {
     width: 400px;
+    height: 200px;
 }
 
 /* DIV 1 STYLES : START */
@@ -40,8 +57,12 @@
     overflow: hidden; /* make sure navbar doesn't overflow */
     display: flex;
     flex-direction: column;
-    background-color: #f7d6e7;
-    padding-right: 20px;
+    /* background-color: #f7d6e7; */
+    background-color: #ffc0cb;
+    /* border: 2px solid #ff69b4 !important; */
+    /* padding-right: 20px; */
+    height: 250px;
+    border-radius: 20px;
 }
     .authControls {
         display: flex;
@@ -118,7 +139,7 @@
 
 
 .calendar {
-    background-color: #f7d6e7;
+    /* background-color: #f7d6e7; */
     grid-area: calendar;
     align-self: start;
     display: flex;

@@ -17,6 +17,9 @@ function HomePage() {
 
   return (
     <div id='homeMainCont' className='homeMainCont parent'>
+      <video className="homeBgVideo" autoPlay muted loop playsInline aria-hidden="true">
+        <source src="/PinkAnimatedBG.mp4" type="video/mp4" />
+      </video>
       <div className="navbar div1">
         <Navbar />
       </div>
