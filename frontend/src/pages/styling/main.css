@@ -20,6 +20,17 @@
     min-height: 100vh;
 }
 
+/* Force page shells to allow the global video background to show through */
+.appContent .homeMainCont,
+.appContent .createPageCont,
+.appContent .expensePage,
+.appContent .categorizePage,
+.appContent .budgetPage,
+.appContent .eventsPage,
+.appContent .loginPage {
+    background-color: transparent !important;
+}
+
 .navbar {
     overflow: hidden;
     display: flex;
