@@ -29,8 +29,8 @@ app.use(firebaseAuth);
 const defaultOrigins = [
     'http://localhost:5173',
     'http://localhost:5174',
-    'https://munyun-frontend.onrender.com',
-    'https://munyun.netlify.app',
+    // 'https://munyun-frontend.onrender.com',
+    // 'https://munyun.netlify.app',
     'https://munyun.pages.dev',
     'https://892c6cfb.munyun.pages.dev'
 ];
