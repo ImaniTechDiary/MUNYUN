@@ -37,7 +37,7 @@ function Navbar() {
             bgGradient={'linear(to-r, pink.700, green.300)'}
             bgClip={'text'}
           >
-            <Link to={'/'}><img src={homeLogo} className='homeLogo' /></Link>
+            <Link to={'/home'}><img src={homeLogo} className='homeLogo' /></Link>
 
           </Text>
 
@@ -70,11 +70,11 @@ function Navbar() {
 
           <HStack className="authControls">
             {user ? (
-              <Button className="authBtn" size="sm" onClick={signOut}>
+              <Button className="authBtn signOutBtn" size="sm" onClick={signOut}>
                 Sign out
               </Button>
             ) : (
-              <Button className="authBtn" size="sm" onClick={signIn}>
+              <Button className="authBtn signInBtn" size="sm" onClick={signIn}>
                 Sign in
               </Button>
             )}
