@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon backend/server.js",
-    "start": "node backend/server.js"
+    "start": "node backend/server.js",
+    "seed:demo": "node backend/scripts/seed-demo.js",
+    "migrate:demo": "node backend/scripts/migrate-demo.js"
   },
   "type": "module",
   "keywords": [],
