@@ -31,7 +31,7 @@ function App(addNewCategory) {
   return (
     <Box className='appCont' minH="100vh" bg="transparent">
       <video className="appBgVideo" autoPlay muted loop playsInline aria-hidden="true">
-        <source src="/PinkAnimatedBG.mp4" type="video/mp4" />
+        <source src="/PinkAnimatedBG23.mp4" type="video/mp4" />
       </video>
       <div className="appContent">
         {/* <Navbar /> */}
