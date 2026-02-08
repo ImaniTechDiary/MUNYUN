@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Emilys+Candy&display=swap');
 
 .createPageCont {
-    background-color: #f7d6e7;
+    background-color: transparent;
     min-height: 100vh;
     /* margin: auto 0; */
 }
@@ -12,7 +12,7 @@
     font-weight: 400;
     font-style: normal;
     letter-spacing: 5px;
-    padding-top: 30px;
+    padding-top: 50px !important;
     font-size: medium;
 
     background-image: url('/images/DarkPinkFlowersBg.png');
@@ -24,7 +24,7 @@
 }
 
 .createExpenseCont {
-    background-color: #f7d6e7;
+    background-color: transparent;
     margin-bottom: 20px;
     
 }

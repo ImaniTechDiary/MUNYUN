@@ -57,12 +57,14 @@
     overflow: hidden; /* make sure navbar doesn't overflow */
     display: flex;
     flex-direction: column;
+    justify-self: center;
     /* background-color: #f7d6e7; */
     background-color: #ffc0cb;
     /* border: 2px solid #ff69b4 !important; */
     /* padding-right: 20px; */
     height: 250px;
     border-radius: 20px;
+    width: 80%;
 }
     .authControls {
         display: flex;

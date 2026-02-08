@@ -1,14 +1,14 @@
 .categorizePage {
-    background-color: #f7d6e7;
+    background-color: transparent;
     min-height: 100vh;
 }
 
 .categorizePageTitle {
-    font-family: "Emilys Candy", serif;
+    font-family: "Emilys Candy", serif !important;
     font-weight: 400;
     font-style: normal;
     letter-spacing: 5px;
-    padding-top: 30px;
+    padding-top: 50px;
     font-size: medium !important;
     background-image: url('/images/DarkPinkFlowersBg.png');
     background-size: cover;

@@ -2,7 +2,7 @@
 
 
 .expensePage {
-    background-color: rgb(247, 214, 231);
+    background-color: transparent;
 }
 
 .viewExpensesPageTitle {
@@ -16,10 +16,11 @@
     color: transparent;
     text-transform: uppercase;
     text-align: center;
-    /* font-family: "Emilys Candy", serif;
+    font-family: "Emilys Candy", serif !important;
     font-weight: 400;
     font-style: normal;
-    letter-spacing: 5px; */
+    letter-spacing: 5px;
+    padding-top: 50px;
 }
 
 .viewAllLink {
